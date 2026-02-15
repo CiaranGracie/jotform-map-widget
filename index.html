@@ -179,7 +179,6 @@
             color: var(--navy);
         }
         .layer-btn.active { background: var(--navy); color: var(--white); }
-        /* Boundary toggle uses blue-mid accent when active (matches header icon) */
         .layer-btn.boundary-toggle.active { background: var(--blue-mid); color: var(--white); border-color: var(--blue-mid); }
         
         .modal-overlay {
@@ -231,7 +230,6 @@
         .modal-btn.danger { background: var(--orange); color: var(--white); }
         .modal-btn.danger:hover { background: #d4623a; }
 
-        /* Name input modal styles */
         .name-input {
             width: 100%;
             padding: 12px 14px;
@@ -269,7 +267,6 @@
         .debug-panel { display: none; padding: 10px; background: #fef9e6; color: var(--orange); font-family: monospace; font-size: 11px; margin-bottom: 10px; border-radius: 6px;}
         .debug-panel.show { display: block; }
 
-        /* Feature labels on map */
         .feature-label {
             background: rgba(15, 36, 88, 0.85);
             color: white;
@@ -505,11 +502,7 @@
                 }
             }
 
-            // ─── Boundary Layer Styles ────────────────────────────────────
-            // Styles for site boundary polygons loaded from KML.
-            // White outline only (no fill) to distinguish from user-drawn features (cyan).
-            // Labels are extracted from KML <name> elements and rendered at polygon centres.
-
+            // ─── Boundary Layer Style ─────────────────────────────────
             function createBoundaryStyle(feature) {
                 const name = feature.get('name') || '';
                 const styles = [
@@ -518,7 +511,6 @@
                     })
                 ];
 
-                // Add label if the KML feature has a name
                 if (name) {
                     styles.push(new ol.style.Style({
                         text: new ol.style.Text({
@@ -529,11 +521,9 @@
                             overflow: true
                         }),
                         geometry: function(feature) {
-                            // Place label at polygon centroid
                             const geom = feature.getGeometry();
                             if (geom.getType() === 'Polygon' || geom.getType() === 'MultiPolygon') {
-                                const extent = geom.getExtent();
-                                return new ol.geom.Point(ol.extent.getCenter(extent));
+                                return new ol.geom.Point(ol.extent.getCenter(geom.getExtent()));
                             }
                             return geom;
                         }
@@ -556,43 +546,35 @@
                 document.getElementById('siteName').textContent = State.site.name;
                 document.getElementById('siteInfo').textContent = State.site.company;
 
-                // ─── Base Layers ──────────────────────────────────────────
+                // ─── Base Layers ──────────────────────────────────────
                 const osm = new ol.layer.Tile({ source: new ol.source.OSM(), visible: false, properties: {name: 'osm'} });
                 const satellite = new ol.layer.Tile({ 
                     source: new ol.source.XYZ({ url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', maxZoom: 19 }), 
                     visible: false,
                     properties: {name: 'satellite'} 
                 });
-                
                 const ortho = new ol.layer.Tile({
                     source: new ol.source.XYZ({ url: State.site.tileUrl, minZoom: 14, maxZoom: 21 }),
                     visible: true,
                     properties: {name: 'ortho'}
                 });
 
-                // ─── Boundary Layer (from KML) ───────────────────────────
-                // Loaded client-side so orthoimage tiles and boundary polygons
-                // are fully independent. Update either without touching the other.
                 const layers = [osm, satellite, ortho];
 
+                // ─── Boundary Layer (from KML) ───────────────────────
                 if (State.site.boundaryUrl) {
                     State.boundaryLayer = new ol.layer.Vector({
                         source: new ol.source.Vector({
                             url: State.site.boundaryUrl,
-                            format: new ol.format.KML({
-                                extractStyles: false,   // Ignore KML styles, use ours
-                                showPointNames: false
-                            })
+                            format: new ol.format.KML({ extractStyles: false, showPointNames: false })
                         }),
                         style: createBoundaryStyle,
                         visible: true,
                         properties: { name: 'boundaries' }
                     });
 
-                    // Log boundary load status for debugging
                     State.boundaryLayer.getSource().on('featuresloadend', function() {
-                        const count = State.boundaryLayer.getSource().getFeatures().length;
-                        console.log('[Widget] Loaded ' + count + ' boundary feature(s) from KML');
+                        console.log('[Widget] Loaded ' + State.boundaryLayer.getSource().getFeatures().length + ' boundary feature(s)');
                     });
                     State.boundaryLayer.getSource().on('featuresloaderror', function() {
                         console.warn('[Widget] Failed to load boundary KML from: ' + State.site.boundaryUrl);
@@ -600,11 +582,10 @@
 
                     layers.push(State.boundaryLayer);
                 } else {
-                    // No boundary URL configured — hide the toggle button
                     document.getElementById('boundaryToggle').style.display = 'none';
                 }
 
-                // ─── Draw Layer (user drawings) ──────────────────────────
+                // ─── Draw Layer ──────────────────────────────────────
                 State.drawSource = new ol.source.Vector();
                 const drawLayer = new ol.layer.Vector({
                     source: State.drawSource,
@@ -615,7 +596,7 @@
                     })
                 });
 
-                // ─── Label Layer (user feature names) ────────────────────
+                // ─── Label Layer ─────────────────────────────────────
                 State.labelLayer = new ol.layer.Vector({
                     source: new ol.source.Vector(),
                     style: function(feature) {
@@ -634,7 +615,7 @@
 
                 layers.push(drawLayer, State.labelLayer);
 
-                // ─── Map Instance ─────────────────────────────────────────
+                // ─── Map Instance ────────────────────────────────────
                 State.map = new ol.Map({
                     target: 'map',
                     layers: layers,
@@ -667,14 +648,12 @@
                     let geom = feature.getGeometry();
                     let labelPoint;
                     
-                    // Get center point for label
                     if (geom.getType() === 'Point') {
                         labelPoint = geom.getCoordinates();
                     } else if (geom.getType() === 'Circle') {
                         labelPoint = geom.getCenter();
                     } else {
-                        const extent = geom.getExtent();
-                        labelPoint = ol.extent.getCenter(extent);
+                        labelPoint = ol.extent.getCenter(geom.getExtent());
                     }
                     
                     const labelFeature = new ol.Feature({
@@ -697,13 +676,8 @@
                 State.drawInteraction.on('drawend', (e) => {
                     State.featureHistory.push(e.feature);
                     setStatus('ready', 'Name your feature...');
-                    
-                    // Determine feature type for the modal
-                    const geomType = e.feature.getGeometry().getType();
                     let featureType = getFeatureTypeLabel(e.feature.getGeometry());
                     if (toolType === 'Box') featureType = 'Rectangle';
-                    
-                    // Show naming modal
                     NameModal.show(e.feature, featureType);
                 });
                 State.map.addInteraction(State.drawInteraction);
@@ -711,16 +685,17 @@
             }
 
             function setStatus(status, text) {
-                const dot = document.getElementById('statusDot');
-                dot.className = `status-dot ${status}`;
+                document.getElementById('statusDot').className = `status-dot ${status}`;
                 document.getElementById('statusText').textContent = text;
             }
 
+            // Only toggle base layers — leave boundaries, draw, and labels untouched
             function switchLayer(layerName) {
-                document.querySelectorAll('.layer-btn:not(.boundary-toggle)').forEach(b => { b.classList.toggle('active', b.dataset.layer === layerName); });
+                document.querySelectorAll('.layer-btn:not(.boundary-toggle)').forEach(b => {
+                    b.classList.toggle('active', b.dataset.layer === layerName);
+                });
                 State.map.getLayers().forEach(lyr => {
                     const name = lyr.get('name');
-                    // Only toggle base layers (osm, satellite, ortho) — not boundaries or draw layers
                     if (name === 'osm' || name === 'satellite' || name === 'ortho') {
                         lyr.setVisible(name === layerName);
                     }
@@ -776,19 +751,16 @@
                 const features = State.drawSource.getFeatures();
                 if (!features.length) return '';
                 
-                // Build KML manually for FlightHub 2 compatibility
                 let placemarks = '';
                 
                 features.forEach((feature, index) => {
                     let geom = feature.getGeometry().clone();
                     const featureName = feature.get('name') || `Feature ${index + 1}`;
                     
-                    // Convert Circle to Polygon (KML doesn't support circles)
                     if (geom.getType() === 'Circle') {
                         geom = ol.geom.Polygon.fromCircle(geom, 64);
                     }
                     
-                    // Transform to WGS84
                     geom.transform('EPSG:3857', 'EPSG:4326');
                     
                     const geomType = geom.getType();
@@ -807,11 +779,10 @@
                         geometryKML = '<LineString><tessellate>1</tessellate><coordinates>' + coordString + '</coordinates></LineString>';
                     }
                     
-                    // Use feature name in KML
-                    placemarks += '<Placemark><name>' + escapeXml(featureName) + '</n><Style><LineStyle><color>ff00aaff</color><width>2</width></LineStyle><PolyStyle><color>4c00aaff</color></PolyStyle></Style>' + geometryKML + '</Placemark>';
+                    placemarks += '<Placemark><name>' + escapeXml(featureName) + '</name><Style><LineStyle><color>ff00aaff</color><width>2</width></LineStyle><PolyStyle><color>4c00aaff</color></PolyStyle></Style>' + geometryKML + '</Placemark>';
                 });
                 
-                const kml = '<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2"><Document><n>Mission Area</name>' + placemarks + '</Document></kml>';
+                const kml = '<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2"><Document><name>Mission Area</name>' + placemarks + '</Document></kml>';
                 
                 return kml;
             }
@@ -868,7 +839,6 @@
                 Modal.cancelBtn.addEventListener('click', () => Modal.hide());
                 document.getElementById('genericModal').addEventListener('click', (e) => { if(e.target.id === 'genericModal') Modal.hide(); });
                 
-                // Name modal event listeners
                 document.getElementById('nameModalSave').addEventListener('click', () => NameModal.save());
                 document.getElementById('nameModalSkip').addEventListener('click', () => NameModal.skip());
                 document.getElementById('featureNameInput').addEventListener('keydown', (e) => {
@@ -885,7 +855,6 @@
                     window.parent.postMessage(JSON.stringify({ type: 'frameReady', qid: qid }), '*');
                     sendToJotForm();
                     
-                    // Listen for submit request from JotForm
                     window.addEventListener('message', function(e) {
                         try {
                             const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
