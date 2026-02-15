@@ -808,10 +808,10 @@
                     }
                     
                     // Use feature name in KML
-                    placemarks += '<Placemark><n>' + escapeXml(featureName) + '</n><Style><LineStyle><color>ff00aaff</color><width>2</width></LineStyle><PolyStyle><color>4c00aaff</color></PolyStyle></Style>' + geometryKML + '</Placemark>';
+                    placemarks += '<Placemark><name>' + escapeXml(featureName) + '</n><Style><LineStyle><color>ff00aaff</color><width>2</width></LineStyle><PolyStyle><color>4c00aaff</color></PolyStyle></Style>' + geometryKML + '</Placemark>';
                 });
                 
-                const kml = '<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2"><Document><n>Mission Area</n>' + placemarks + '</Document></kml>';
+                const kml = '<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2"><Document><n>Mission Area</name>' + placemarks + '</Document></kml>';
                 
                 return kml;
             }
