@@ -15,7 +15,7 @@ const SITES = {
         name: 'Binduli North',
         company: 'Norton',
         tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/binduli-north/{z}/{x}/{y}.png',
-        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/binduli-north/boundaries.kml',
+        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/binduli-north/binduli_north_boundaries.kml',
         center: [121.37, -30.78],
         defaultZoom: 15
     },
@@ -23,7 +23,7 @@ const SITES = {
         name: 'Gudai Darri',
         company: 'Rio Tinto',
         tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/gudai-darri/{z}/{x}/{y}.png',
-        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/gudai-darri/boundaries.kml',
+        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/gudai-darri/gdi_boundaries.kml',
         center: [119.03, -22.53],
         defaultZoom: 15
     },
@@ -31,7 +31,7 @@ const SITES = {
         name: 'Gruyere',
         company: 'Goldfields',
         tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/gruyere/{z}/{x}/{y}.png',
-        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/gruyere/boundaries.kml',
+        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/gruyere/gruyere_boundaries.kml',
         center: [123.8552, -27.9897],
         defaultZoom: 15
     },
@@ -39,7 +39,7 @@ const SITES = {
         name: 'Saraji',
         company: 'BMA',
         tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/saraji/{z}/{x}/{y}.png',
-        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/saraji/boundaries.kml',
+        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/saraji/saraji_boundaries.kml',
         center: [148.30, -22.42],
         defaultZoom: 15
     },
@@ -47,7 +47,7 @@ const SITES = {
         name: 'Peak Downs',
         company: 'BMA',
         tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/peak-downs/{z}/{x}/{y}.png',
-        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/peak-downs/boundaries.kml',
+        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/peak-downs/peak_downs_boundaries.kml',
         center: [148.19, -22.26],
         defaultZoom: 15
     },
@@ -55,7 +55,7 @@ const SITES = {
         name: 'Goonyella',
         company: 'BMA',
         tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/goonyella/{z}/{x}/{y}.png',
-        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/goonyella/boundaries.kml',
+        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/goonyella/goonyella_boundaries.kml',
         center: [147.97, -21.77],
         defaultZoom: 15
     },
@@ -63,7 +63,7 @@ const SITES = {
         name: 'KOTH',
         company: 'Vault Minerals',
         tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/koth/{z}/{x}/{y}.png',
-        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/koth/boundaries.kml',
+        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/koth/koth_boundaries.kml',
         center: [121.16, -28.67],
         defaultZoom: 15
     },
@@ -71,7 +71,7 @@ const SITES = {
         name: 'Caval Ridge',
         company: 'BMA',
         tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/caval_ridge/{z}/{x}/{y}.png',
-        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/caval_ridge/boundaries.kml',
+        boundaryUrl: 'https://d3mamsvnskv4vj.cloudfront.net/caval_ridge/caval_ridge_boundaries.kml',
         center: [148.06, -22.12],
         defaultZoom: 15
     }
