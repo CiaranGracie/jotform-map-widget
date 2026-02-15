@@ -72,7 +72,7 @@ const SITES = {
     'caval-ridge': {
         name: 'Caval Ridge',
         company: 'BMA',
-        tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/caval-ridge/{z}/{x}/{y}.png',
+        tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/caval_ridge/{z}/{x}/{y}.png',
         boundaryUrl: `${BOUNDARY_BASE}/caval_ridge_boundaries.kml`,
         center: [148.06, -22.12],
         defaultZoom: 15
