@@ -10,7 +10,7 @@
 // The key (e.g. 'binduli-north') is used in the URL: ?site=binduli-north
 // ──────────────────────────────────────────────────────────────
 
-const BOUNDARY_BASE = 'https://ciaran1211.github.io/jotform-map-widget/boundaries';
+const BOUNDARY_BASE = 'https://ciarangracie.github.io/jotform-map-widget/boundaries';
 
 const SITES = {
     'binduli-north': {
