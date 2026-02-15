@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Binduli Site Areas.kml</name>
+	<open>1</open>
+	<atom:link rel="app" href="https://www.google.com/earth/about/versions/#earth-pro" title="Google Earth Pro 7.3.6.10441"></atom:link>
+	<Style id="dji_style_Polygon00FF00">
+		<LineStyle>
+			<color>ff00ff00</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000ff00</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_Polygon00FF7F">
+		<LineStyle>
+			<color>ff7fff00</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>807fff00</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_Polygon00FFFF">
+		<LineStyle>
+			<color>ffffff00</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80ffff00</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_Polygon19BE6B">
+		<LineStyle>
+			<color>ff6bbe19</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>806bbe19</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_Polygon55FFFF">
+		<LineStyle>
+			<color>ffffff55</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80ffff55</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_PolygonB620E0">
+		<LineStyle>
+			<color>ffe020b6</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80e020b6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_PolygonFF55FF">
+		<LineStyle>
+			<color>ffff55ff</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80ff55ff</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_PolygonFFFF00">
+		<LineStyle>
+			<color>ff00ffff</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000ffff</color>
+		</PolyStyle>
+	</Style>
+	<Placemark>
+		<name>Fort William</name>
+		<styleUrl>#dji_style_Polygon00FF00</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#00FF00</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.3753166398699,-30.79920903856097,339.9441012294285 121.3888758302233,-30.79343690916821,332.6393984959424 121.3884699160988,-30.79309700711761,357.3259311534368 121.3917813351722,-30.79092597192428,338.6336227015945 121.4049512794915,-30.7837016649319,348.5972883706944 121.4015605908371,-30.77891246108823,343.0505552178977 121.3836965958339,-30.78550825702878,342.3557340562678 121.3773670895141,-30.78785493401227,339.2884886016914 121.3677470799568,-30.79139316186228,334.6300296189258 121.3753166398699,-30.79920903856097,339.9441012294285 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Offices</name>
+		<styleUrl>#dji_style_PolygonFFFF00</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFFF00</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.3899422986294,-30.78124101659403,337.7033973452064 121.3910751645029,-30.78276714504688,340.61875147449 121.4015605908371,-30.77891246108823,343.0305405648319 121.3974709623047,-30.77392418433834,339.0495717398672 121.387613078503,-30.77720960882441,350.0072715615987 121.3889774772925,-30.77888432290617,350.4244971308596 121.3890016614234,-30.77982647414577,348.8407221921144 121.3894372284448,-30.78009687975269,348.9777812293474 121.3899422986294,-30.78124101659403,337.7033973452064 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>JIV Pit</name>
+		<styleUrl>#dji_style_PolygonFF55FF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FF55FF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.3806387549757,-30.78085452400209,337.2422548813528 121.3832350040751,-30.78442720723342,330.8965474269527 121.3836965958339,-30.78550825702878,342.3557340565586 121.3870620321416,-30.78425856313526,338.3404544976386 121.3910751645029,-30.78276714504688,340.6173549849202 121.3899422986294,-30.78124101659403,337.698999745366 121.3894372284448,-30.78009687975269,348.9717563978712 121.3890016614234,-30.77982647414577,348.8346973628297 121.3889774772925,-30.77888432290617,350.4244971302115 121.387613078503,-30.77720960882441,350.0072715606095 121.3858791288463,-30.77484773152051,347.0181984942994 121.3843692993217,-30.77237111704991,346.7501052530988 121.3831773605761,-30.76947337507413,348.2035784174072 121.382270763072,-30.76807511845572,351.0141746761088 121.3810074123978,-30.76759498198149,351.7522048677053 121.3810074123978,-30.76759498198149,351.4426938550178 121.3810074123978,-30.76759498198149,351.209969925599 121.3810074123978,-30.76759498198149,351.6746380988629 121.3810074123978,-30.76759498198149,350.6805407071064 121.3810074123978,-30.76759498198149,350.7099088122466 121.3810074123978,-30.76759498198149,349.8468692509122 121.3810074123978,-30.76759498198149,348.876115132266 121.376851951753,-30.77035075270106,341.0995682550763 121.3752903447666,-30.77071169347012,340.9986345873382 121.3770806765637,-30.77235868161856,346.3276109069727 121.377232412852,-30.77489098290307,352.3178067065809 121.3806387549757,-30.78085452400209,337.2422548813528 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>EWRD</name>
+		<styleUrl>#dji_style_Polygon19BE6B</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#19BE6B</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.3843692993217,-30.77237111704991,346.8043287463306 121.3858791288463,-30.77484773152051,347.0242233275308 121.387613078503,-30.77720960882441,350.0012467267183 121.3974709623047,-30.77392418433834,339.0567886004721 121.3906398029845,-30.7661322218616,339.5230574008593 121.3831773605761,-30.76947337507413,347.9475348411997 121.3843692993217,-30.77237111704991,346.8043287463306 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>NWRD</name>
+		<styleUrl>#dji_style_Polygon55FFFF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#55FFFF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.3752903447666,-30.77071169347012,341.5401134701359 121.376851951753,-30.77035075270106,341.3435621664967 121.3810074123978,-30.76759498198149,348.8941896290784 121.3810074123978,-30.76759498198149,349.8408444186071 121.3810074123978,-30.76759498198149,350.7340081425054 121.3810074123978,-30.76759498198149,350.6564413754919 121.3829835563663,-30.75767038670402,329.4400599904597 121.3748998594867,-30.74991737066517,321.6920624509325 121.3623602172698,-30.75808164788722,317.7100914531522 121.3691493122607,-30.7644907593229,322.2751809356969 121.3662980505189,-30.76634678966845,317.6479555645367 121.3677370191439,-30.76800686006434,329.3752438565332 121.3668369766305,-30.76923768970563,329.2087930879563 121.3693776993669,-30.77197490145006,331.102102665645 121.3752903447666,-30.77071169347012,341.5401134701359 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Treatment</name>
+		<styleUrl>#dji_style_PolygonFFFF00</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFFF00</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.3691493122607,-30.7644907593229,322.3378234167246 121.3623602172698,-30.75808164788722,317.6961800558389 121.3484469522774,-30.7714516770673,315.8252082120321 121.3523614976106,-30.77550572546438,328.9226253489111 121.3603970889205,-30.77019689338799,325.7679284211349 121.3691493122607,-30.7644907593229,322.3378234167246 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Site Access</name>
+		<styleUrl>#dji_style_Polygon00FFFF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#00FFFF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.3988913554597,-30.8016923338559,339.0002441480758 121.3888758302233,-30.79343690916821,332.6461389463939 121.3753166398699,-30.79920903856097,339.8879317577865 121.3861442164972,-30.81024884408589,342.7696110231126 121.3988913554597,-30.8016923338559,339.0002441480758 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>ROM2</name>
+		<styleUrl>#dji_style_PolygonFFFF00</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFFF00</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.3829835563663,-30.75767038670402,329.4820061353137 121.3810074123978,-30.76759498198149,350.6564413759245 121.3810074123978,-30.76759498198149,351.6452699927208 121.3810074123978,-30.76759498198149,351.1986763171919 121.3810074123978,-30.76759498198149,351.4426938536381 121.3810074123978,-30.76759498198149,351.7522048658341 121.382270763072,-30.76807511845572,351.0555924471032 121.3831773605761,-30.76947337507413,348.2096032504525 121.3831773605761,-30.76947337507413,347.9535596729856 121.3906398029845,-30.7661322218616,339.5218879553995 121.3829835563663,-30.75767038670402,329.4820061353137 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>KL PIT</name>
+		<styleUrl>#dji_style_Polygon00FF7F</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#00FF7F</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.3721617458739,-30.77649882053992,334.5678935712241 121.377232412852,-30.77489098290307,352.3298563731597 121.3770806765637,-30.77235868161856,346.3276109076498 121.3752903447666,-30.77071169347012,340.9865849214721 121.3693776993669,-30.77197490145006,331.0185110657632 121.3668369766305,-30.76923768970563,329.2381611947966 121.3677370191439,-30.76800686006434,329.3217527928804 121.3662980505189,-30.76634678966845,317.62599202887 121.3603970889205,-30.77019689338799,326.9396993385567 121.3685792490647,-30.77870991491621,324.0555526349409 121.3721617458739,-30.77649882053992,334.5678935712241 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>ROM</name>
+		<styleUrl>#dji_style_Polygon00FFFF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#00FFFF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.3836965958339,-30.78550825702878,342.355734055743 121.3832350040751,-30.78442720723342,330.8567717542713 121.3806387549757,-30.78085452400209,337.1907898536639 121.377232412852,-30.77489098290307,352.3419060383724 121.3721617458739,-30.77649882053992,335.8361090375407 121.3685792490647,-30.77870991491621,324.0579672650147 121.3773670895141,-30.78785493401227,339.2597261156353 121.3836965958339,-30.78550825702878,342.355734055743 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Heap Leach</name>
+		<styleUrl>#dji_style_PolygonB620E0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#B620E0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.3773670895141,-30.78785493401227,339.2537012819285 121.3603970889205,-30.77019689338799,326.9457241731294 121.3523614976106,-30.77550572546438,328.9467246803584 121.3677470799568,-30.79139316186228,334.6184975275218 121.3773670895141,-30.78785493401227,339.2537012819285 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+</Document>
+</kml>
