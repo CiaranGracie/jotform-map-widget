@@ -17,7 +17,7 @@ const SITES = {
         name: 'Binduli North',
         company: 'Norton',
         tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/binduli-north/{z}/{x}/{y}.png',
-        boundaryUrl: `${BOUNDARY_BASE}/binduli_north_boundaries.kml`,
+        boundaryUrl: `${BOUNDARY_BASE}/binduli-north_boundaries.kml`,
         center: [121.37, -30.78],
         defaultZoom: 15
     },
@@ -49,7 +49,7 @@ const SITES = {
         name: 'Peak Downs',
         company: 'BMA',
         tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/peak-downs/{z}/{x}/{y}.png',
-        boundaryUrl: `${BOUNDARY_BASE}/peak_downs_boundaries.kml`,
+        boundaryUrl: `${BOUNDARY_BASE}/peak-downs_boundaries.kml`,
         center: [148.19, -22.26],
         defaultZoom: 15
     },
@@ -73,7 +73,7 @@ const SITES = {
         name: 'Caval Ridge',
         company: 'BMA',
         tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/caval_ridge/{z}/{x}/{y}.png',
-        boundaryUrl: `${BOUNDARY_BASE}/caval_ridge_boundaries.kml`,
+        boundaryUrl: `${BOUNDARY_BASE}/caval-ridge_boundaries.kml`,
         center: [148.06, -22.12],
         defaultZoom: 15
     }
