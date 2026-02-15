@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>caval-ridge_boundaries.kml</name>
+	<open>1</open>
+	<atom:link rel="app" href="https://www.google.com/earth/about/versions/#earth-pro" title="Google Earth Pro 7.3.6.10441"></atom:link>
+	<Style id="dji_style_Polygon19BE6B">
+		<LineStyle>
+			<color>ff6bbe19</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>806bbe19</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_Polygon2D8CF0">
+		<LineStyle>
+			<color>fff08c2d</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80f08c2d</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_PolygonB620E0">
+		<LineStyle>
+			<color>ffe020b6</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80e020b6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_PolygonFFBB00">
+		<LineStyle>
+			<color>ff00bbff</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000bbff</color>
+		</PolyStyle>
+	</Style>
+	<Placemark>
+		<name>40 East</name>
+		<styleUrl>#dji_style_Polygon2D8CF0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#2D8CF0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.0563476061,-22.1135051894,235.7577591805075 148.0749582039,-22.1144064352,302.4907654669619 148.0780141051,-22.1113497486,304.1037075865485 148.0746740615,-22.1008250608,327.2810647714009 148.0568015163,-22.0999594012,264.2605410343807 148.0563476061,-22.1135051894,235.7577591805075 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>50 West</name>
+		<styleUrl>#dji_style_PolygonB620E0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#B620E0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.0348023457,-22.0808004709,298.1813727216798 148.0337001928,-22.0988395411,323.0000305185095 148.0581700867,-22.1000244182,258.6899517992734 148.0588276011,-22.0819665103,242.594304128081 148.0348023457,-22.0808004709,298.1813727216798 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>50 East</name>
+		<styleUrl>#dji_style_Polygon19BE6B</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#19BE6B</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.0746740615,-22.1008250608,327.2810647714009 148.0746355208,-22.1007036283,326.8601520063617 148.0732376116,-22.0962981959,307.0000305185095 148.0775233804,-22.0862393663,297.0000305185094 148.0784409396,-22.0840856313,300 148.0789287142,-22.0829406775,300 148.0588276011,-22.0819665103,242.594304128081 148.0581700867,-22.1000244182,258.6899517992734 148.0746740615,-22.1008250608,327.2810647714009 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>60 West</name>
+		<styleUrl>#dji_style_Polygon2D8CF0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#2D8CF0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.0348023457,-22.0808004709,298.1813727216798 148.0588275773,-22.0819672241,242.5986026642796 148.059216868,-22.0712750461,276.8235252900984 148.0521375051,-22.0725974245,341.3443392929763 148.0492327422,-22.0733609445,294.2859373783987 148.0352568131,-22.0726817543,293.0000305185094 148.0352568131,-22.0726817543,293.0000305185094 148.0348023457,-22.0808004709,298.1813727216798 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>60 East</name>
+		<styleUrl>#dji_style_PolygonB620E0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#B620E0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.0789287142,-22.0829406775,300 148.0792423489,-22.0822044656,300.0000305185094 148.0799308071,-22.0805883975,298.000061037019 148.0800390087,-22.0768674689,293.5000312567636 148.0800750837,-22.0756269391,292.9203330401083 148.0796106587,-22.075123882,291.5090252672263 148.0796042579,-22.0751169416,291.4344550936268 148.0795732703,-22.0750833799,291.6372206379097 148.0793729039,-22.0752286718,291.4108620050473 148.0791071937,-22.0754463976,290.6316288291238 148.0787228772,-22.0756962858,291.3305937980484 148.0782498687,-22.0760021487,291.999938962981 148.0779283933,-22.0761796268,292.3063316228373 148.0776249505,-22.0764052318,292.5343854685326 148.0774115965,-22.0764641232,292.7247776147855 148.0773519292,-22.0765005492,292.9369550174399 148.0770362247,-22.0764872699,291.4384851944404 148.0769696374,-22.0764866511,291.7120478739234 148.0769661137,-22.0764859245,291.7035818536125 148.0767618488,-22.0764781806,290.999938962981 148.0767013534,-22.0764310007,290.999938962981 148.0766737077,-22.0764252658,290.999938962981 148.0762168023,-22.0764821347,290.000061037019 148.0760239389,-22.0765337353,290.000061037019 148.0756738824,-22.0766631597,289.4107056710998 148.0755153868,-22.0768018939,290.000061037019 148.0754487966,-22.0769032772,290.000061037019 148.0755624696,-22.0769106242,290.000061037019 148.0760979622,-22.0767469018,290.000061037019 148.0764275321,-22.0767200205,290.9999694814906 148.0772308441,-22.0773977451,292.5650886333447 148.077823023,-22.0779181064,293.9999694814906 148.0778599987,-22.0783535154,295.4624912282484 148.0779238224,-22.0789345701,295.4280206280214 148.077951945,-22.0797853739,295.591827369129 148.0774619163,-22.0803637697,295.0000305185094 148.0769645614,-22.080928762,295.0000305185095 148.0766633404,-22.0811830132,295 148.0759204301,-22.0813211554,294.7764297306387 148.0754018104,-22.0802423245,292.4684372025099 148.0742031378,-22.0797931605,291.1177392469392 148.0739632273,-22.0799130965,291 148.0733822963,-22.0803078812,291.0000305185094 148.073128254,-22.0802689516,291.0000305185094 148.0730104701,-22.0802425338,291.0000305185094 148.0727196581,-22.0798062757,291.0000305185094 148.0724192671,-22.0799684476,291.5542938567686 148.0724883044,-22.0800904131,291.3868691213883 148.0720244864,-22.080305388,291.3271454262504 148.0714800746,-22.0792861326,292.1091559353956 148.0727529291,-22.0787313425,291 148.0734126397,-22.0799397152,290.1885504926469 148.074303862,-22.0780213709,289.0000305185094 148.0753912537,-22.0764781648,289.0000305185094 148.0759148832,-22.0763529482,289.6048613863032 148.0759716102,-22.0763287729,289.983999573766 148.0761498999,-22.0762967528,290.000061037019 148.0766772621,-22.076170633,290.999938962981 148.0767738845,-22.0760792953,290.999938962981 148.0768825453,-22.0759114757,290.999938962981 148.0772124512,-22.0759189348,292.0000305185094 148.0774845029,-22.0761110149,292.0000305185094 148.0778046524,-22.076000112,292.0000305185094 148.0791373065,-22.0751748875,290.9999694814906 148.079386277,-22.0749875422,291.0705419245801 148.0794451878,-22.0749448243,291.1648052218788 148.0794417564,-22.0749409265,291.1221010514856 148.079436284,-22.0749350007,291.0556889138106 148.078631268,-22.0740630121,289.6241799964083 148.0756481568,-22.0708315807,286.5169199053282 148.07551174,-22.0709466834,286.000061037019 148.0754917668,-22.0709250446,286.000061037019 148.0749453217,-22.0703330015,285 148.0745642905,-22.0684072482,283.8574030330981 148.059216868,-22.0712750461,276.8235252900984 148.0588275773,-22.0819672241,242.5986026642796 148.0789287142,-22.0829406775,300 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>70 West</name>
+		<styleUrl>#dji_style_Polygon19BE6B</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#19BE6B</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.0492327519,-22.0733609445,294.2860503643508 148.0521375051,-22.0725974245,341.3443392929763 148.0592168683,-22.0712750913,276.822480066321 148.0572785908,-22.0584897046,277 148.0570629517,-22.0585465331,277 148.0529873311,-22.0596205271,279.8716791141232 148.0476501883,-22.0625926331,285.0000305185094 148.0470682553,-22.0635021286,285.0000305185094 148.0482939277,-22.0651275582,283.999938962981 148.0374651239,-22.0651275511,289.1531468797283 148.0367912955,-22.0651321156,290.9999694814906 148.0356790607,-22.0651380587,292.9999694814905 148.0352568131,-22.0726817543,293.0000305185094 148.0492327519,-22.0733609445,294.2860503643508 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>70 East</name>
+		<styleUrl>#dji_style_Polygon2D8CF0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#2D8CF0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.0745642905,-22.0684072482,283.8574030330981 148.0739509648,-22.0653073539,282.0000305185094 148.0691509708,-22.0587256436,274.7812822041504 148.0683460105,-22.0592282098,274.000061037019 148.0672639515,-22.0577312207,272.928369882201 148.0680576301,-22.0572263667,272.9999694814906 148.0670819737,-22.0558884074,269.2644654064445 148.0577599967,-22.0583628418,276 148.0572785908,-22.0584897046,277 148.0592168683,-22.0712750913,276.822480066321 148.0745642905,-22.0684072482,283.8574030330981 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>20 East</name>
+		<styleUrl>#dji_style_PolygonB620E0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#B620E0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.0703729627,-22.1341982278,295.9999694814906 148.0706458311,-22.1338162348,295.9999694814906 148.0760085157,-22.1261832328,290.0000305185095 148.0764198251,-22.1255977511,289.3332623146218 148.079972132,-22.1205409802,296.0357191870247 148.0802070848,-22.1202064934,296 148.0803498994,-22.1200031892,296 148.0806326527,-22.1195997341,296.0000305185094 148.0781614602,-22.1118140383,303.3753185012206 148.0780141051,-22.1113497486,304.1037075865485 148.0622387991,-22.1271271744,239.8513831287104 148.0703729627,-22.1341982278,295.9999694814906 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>30 East</name>
+		<styleUrl>#dji_style_Polygon19BE6B</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#19BE6B</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.0560997501,-22.1208460056,217.2900666999648 148.0622387894,-22.1271271745,239.8518426787164 148.0749582039,-22.1144064352,302.4907654669619 148.0563476061,-22.1135051894,235.7577591805075 148.0560997501,-22.1208460056,217.2900666999648 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>30 West</name>
+		<styleUrl>#dji_style_PolygonB620E0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#B620E0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.0560997501,-22.1208460056,217.2900666999648 148.0563476061,-22.1135051894,235.7577591805075 148.0330343049,-22.1123742452,310.1561376619215 148.0323080166,-22.1253720503,329.8743473622666 148.0356181975,-22.1335612055,323.0000915555285 148.0448827456,-22.1444798735,321.9999389629811 148.0622387894,-22.1271271745,239.8518426787164 148.0560997501,-22.1208460056,217.2900666999648 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>40 West</name>
+		<styleUrl>#dji_style_Polygon19BE6B</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#19BE6B</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.0337001928,-22.0988395411,323.0000305185095 148.033034685,-22.112373195,310.1600403244922 148.0563476061,-22.1135051894,235.7577591805075 148.0568015163,-22.0999594012,264.2605410343807 148.0337001928,-22.0988395411,323.0000305185095 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>10N West</name>
+		<styleUrl>#dji_style_PolygonFFBB00</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFBB00</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.1215089957,-22.1724608354,154.0170542180896 148.1089356708,-22.1724012356,204.9997558519242 148.1035486379,-22.1912696516,291 148.1125214152,-22.1978033459,279 148.1152161811,-22.1943486712,281.7528254462501 148.1232768738,-22.1890468065,275.9703775628447 148.1241290073,-22.1878342064,280.3814092827631 148.1246962085,-22.1863742086,274.0052165601577 148.1257156171,-22.1842454326,269.0002441480758 148.1278566633,-22.1805957139,269.4285480230133 148.1294015245,-22.1786613392,269.8666166531117 148.1307940497,-22.176624248,277.6004250468741 148.1308574826,-22.1765314543,275.2075029992241 148.1215089957,-22.1724608354,154.0170542180896 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>10N East</name>
+		<styleUrl>#dji_style_Polygon19BE6B</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#19BE6B</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.1089356708,-22.17240123559999,204.9997558519242 148.1215089957,-22.1724608354,154.0170542180896 148.1305121093,-22.1763912507,280.692762600527 148.1308574826,-22.17653145429999,275.2075029994465 148.1312734806,-22.1759228851,270.1503479185768 148.1312497864,-22.1757095829,272.2973085055967 148.1309565139,-22.173069228,275.2681538144282 148.1344687646,-22.1681782788,264.0138214370594 148.1344688798,-22.16817812440001,264.0210169983649 148.1311714329,-22.1681534414,276.292816783784 148.1204876584,-22.16618726059999,280.9571197763292 148.1131958864,-22.1609349554,278.0000305185094 148.112449329,-22.16039771559999,278.0000305185095 148.1089356708,-22.17240123559999,204.9997558519242 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>11N East</name>
+		<styleUrl>#dji_style_Polygon2D8CF0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#2D8CF0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.1089356708,-22.1724012356,204.9997558519242 148.112449329,-22.1603977156,278.0000305185095 148.1059851182,-22.1557402764,283.1031430278081 148.0996093145,-22.1511473522,282.0615954179423 148.0947714528,-22.1455352297,283.0000305185094 148.0932067494,-22.1431058611,277.0001525925474 148.0832725947,-22.15440292,289.6839552526199 148.1089356708,-22.1724012356,204.9997558519242 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>CHERWELL</name>
+		<styleUrl>#dji_style_PolygonFFBB00</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFBB00</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.0640471714,-22.1455632926,290.3315151620916 148.0795593532,-22.1571331772,278.5993705124791 148.0803517178,-22.1577240821,288.1433780359967 148.0805023377,-22.1575528293,291.5923393870278 148.083156013,-22.1545354864,296.7240870372537 148.0832725947,-22.15440292,289.6839552526199 148.0925001481,-22.1439094845,274.6827878086892 148.0932067494,-22.1431058611,277.0001525925474 148.0831347069,-22.1274655024,288.4771674716454 148.0815855652,-22.1225982833,294.2837140021641 148.0815118701,-22.12236671,294.0866669072432 148.0809956445,-22.1207432677,296.6777871889734 148.0774563459,-22.1257826483,288.9999694814905 148.0782720466,-22.1262801332,289 148.076670463,-22.1285597627,289.0000305185094 148.0758548211,-22.1280621794,290.0000305185095 148.063710753,-22.1453123307,291.8032923779237 148.0640471714,-22.1455632926,290.3315151620916 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>MIA</name>
+		<styleUrl>#dji_style_Polygon19BE6B</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#19BE6B</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.0631224975,-22.1461776075,294.9218589155483 148.0555981102,-22.1568212142,307.3227848318108 148.0711790925,-22.1681524185,279.7563437948764 148.0803517178,-22.1577240821,288.1433780359967 148.063710753,-22.1453123307,291.8032923779237 148.0631224975,-22.1461776075,294.9218589155483 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>11N West</name>
+		<styleUrl>#dji_style_PolygonB620E0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#B620E0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.0711790925,-22.1681524185,279.7563437948764 148.1035486379,-22.1912696516,291 148.1089356708,-22.1724012356,204.9997558519242 148.0832725947,-22.15440292,289.6839552526199 148.0832725947,-22.15440292,289.6839552526199 148.0711790925,-22.1681524185,279.7563437948764 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>20 West</name>
+		<styleUrl>#dji_style_Polygon2D8CF0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#2D8CF0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						148.0448759693,-22.1444866466,321.9999389629811 148.0548708125,-22.1562940082,309.2323536199269 148.0703729627,-22.1341982278,295.9999694814906 148.0622388953,-22.1271270744,239.8399001824939 148.0448759693,-22.1444866466,321.9999389629811 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+</Document>
+</kml>
