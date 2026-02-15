@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Drawing Widget</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@8.2.0/ol.css">
+    <script src="https://cdn.jsdelivr.net/npm/ol@8.2.0/dist/ol.js"></script>
+    <script src="config.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap');
+        
+        :root {
+            --navy: #0F2458;
+            --blue-mid: #5381A1;
+            --cyan: #0ABAEF;
+            --light-bg: #E8EEF5;
+            --pink: #E92F8B;
+            --orange: #E76F41;
+            --yellow: #FEE980;
+            --white: #ffffff;
+            --green: #10B981;
+            --shadow-sm: 0 1px 3px rgba(15, 36, 88, 0.08);
+            --shadow-lg: 0 20px 40px rgba(15, 36, 88, 0.25);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light-bg);
+            color: var(--navy);
+            line-height: 1.5;
+            overflow: hidden;
+        }
+        
+        .widget-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding: 16px;
+            height: 100vh;
+            background: var(--light-bg);
+            transition: all 0.3s ease;
+        }
+
+        .site-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--navy);
+            border-radius: 10px;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+        
+        .site-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--blue-mid);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+        }
+        
+        .toolbar-group {
+            display: flex;
+            gap: 4px;
+            padding-right: 12px;
+            border-right: 1px solid var(--light-bg);
+        }
+        .toolbar-group:last-child { border-right: none; padding-right: 0; }
+        
+        .tool-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--navy);
+            background: var(--light-bg);
+            border: 1px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        
+        .tool-btn:hover { background: #d9e4ef; }
+        .tool-btn.active { background: var(--cyan); color: var(--white); }
+        .tool-btn.danger { color: var(--orange); }
+        .tool-btn.danger:hover { background: #fef3ed; }
+        .tool-btn.success { color: var(--green); }
+        .tool-btn.success:hover { background: #ecfdf5; }
+        .tool-btn svg { width: 16px; height: 16px; }
+        
+        .map-wrapper {
+            position: relative;
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            min-height: 300px;
+        }
+        
+        #map { width: 100%; height: 100%; background: #d9e4ef; }
+        
+        .map-controls {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            z-index: 100;
+        }
+        
+        .map-overlay {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(4px);
+            border-radius: 6px;
+            font-size: 12px;
+            color: var(--blue-mid);
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        .status-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: var(--white);
+            border-radius: 8px;
+            font-size: 12px;
+            box-shadow: var(--shadow-sm);
+            flex-shrink: 0;
+        }
+        
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--blue-mid);
+            margin-right: 6px;
+        }
+        .status-dot.ready { background: var(--cyan); }
+        .status-dot.drawing { background: var(--yellow); animation: pulse 1.5s infinite; }
+        
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        
+        .layer-selector { display: flex; gap: 4px; margin-left: auto; }
+        .layer-btn {
+            padding: 6px 10px;
+            font-size: 11px;
+            font-weight: 500;
+            background: var(--light-bg);
+            border: 1px solid #d9e4ef;
+            border-radius: 4px;
+            cursor: pointer;
+            color: var(--navy);
+        }
+        .layer-btn.active { background: var(--navy); color: var(--white); }
+        /* Boundary toggle uses blue-mid accent when active (matches header icon) */
+        .layer-btn.boundary-toggle.active { background: var(--blue-mid); color: var(--white); border-color: var(--blue-mid); }
+        
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 36, 88, 0.6);
+            backdrop-filter: blur(2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 20000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+        
+        .modal-overlay.show { opacity: 1; visibility: visible; }
+        
+        .modal-box {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            width: 90%;
+            max-width: 340px;
+            box-shadow: var(--shadow-lg);
+            transform: scale(0.95);
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .modal-overlay.show .modal-box { transform: scale(1); }
+        .modal-title { font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+        .modal-message { font-size: 14px; color: var(--blue-mid); margin-bottom: 24px; line-height: 1.5; }
+        .modal-buttons { display: flex; gap: 12px; justify-content: flex-end; }
+        
+        .modal-btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            transition: background 0.15s;
+        }
+        
+        .modal-btn.cancel { background: var(--light-bg); color: var(--navy); }
+        .modal-btn.cancel:hover { background: #d9e4ef; }
+        .modal-btn.primary { background: var(--cyan); color: var(--white); }
+        .modal-btn.primary:hover { filter: brightness(1.1); }
+        .modal-btn.danger { background: var(--orange); color: var(--white); }
+        .modal-btn.danger:hover { background: #d4623a; }
+
+        /* Name input modal styles */
+        .name-input {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 14px;
+            font-family: inherit;
+            border: 2px solid var(--light-bg);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            transition: border-color 0.2s;
+        }
+        .name-input:focus {
+            outline: none;
+            border-color: var(--cyan);
+        }
+        .name-input::placeholder {
+            color: var(--blue-mid);
+            opacity: 0.6;
+        }
+
+        .fs-toggle-btn {
+            background: var(--white);
+            border: none;
+            border-radius: 6px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--navy);
+            box-shadow: var(--shadow-sm);
+        }
+        .fs-toggle-btn:hover { background: var(--light-bg); }
+        
+        .debug-panel { display: none; padding: 10px; background: #fef9e6; color: var(--orange); font-family: monospace; font-size: 11px; margin-bottom: 10px; border-radius: 6px;}
+        .debug-panel.show { display: block; }
+
+        /* Feature labels on map */
+        .feature-label {
+            background: rgba(15, 36, 88, 0.85);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget-container" id="widgetRoot">
+        <div class="site-header">
+            <div class="site-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+            </div>
+            <div>
+                <h4 id="siteName">Loading...</h4>
+                <p id="siteInfo" style="font-size: 12px; opacity: 0.8;">Initializing map</p>
+            </div>
+        </div>
+        
+        <div class="debug-panel" id="debugPanel"></div>
+        
+        <div class="toolbar">
+            <div class="toolbar-group">
+                <button class="tool-btn" data-tool="Polygon" title="Draw Polygon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,2 22,8.5 22,15.5 12,22 2,15.5 2,8.5"/></svg> Polygon
+                </button>
+                <button class="tool-btn" data-tool="Box" title="Draw Rectangle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg> Rectangle
+                </button>
+                <button class="tool-btn" data-tool="Circle" title="Draw Circle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg> Circle
+                </button>
+            </div>
+            
+            <div class="toolbar-group">
+                <button class="tool-btn" data-tool="LineString" title="Draw Line">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20L20 4"/><circle cx="4" cy="20" r="2" fill="currentColor"/><circle cx="20" cy="4" r="2" fill="currentColor"/></svg> Line
+                </button>
+                <button class="tool-btn" data-tool="Point" title="Place Point">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3" fill="currentColor"/><circle cx="12" cy="12" r="8"/></svg> Point
+                </button>
+            </div>
+            
+            <div class="toolbar-group">
+                <button class="tool-btn" id="undoBtn" title="Undo Last">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"/><path d="M3 13a9 9 0 1 0 3-7.7L3 7"/></svg> Undo
+                </button>
+                <button class="tool-btn danger" id="clearBtn" title="Clear All">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg> Clear
+                </button>
+            </div>
+
+            <div class="toolbar-group">
+                <button class="tool-btn success" id="downloadBtn" title="Download KML">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> KML
+                </button>
+            </div>
+            
+            <div class="layer-selector">
+                <button class="layer-btn" data-layer="osm">Street</button>
+                <button class="layer-btn" data-layer="satellite">Sat</button>
+                <button class="layer-btn active" data-layer="ortho" id="orthoBtn">Ortho</button>
+                <button class="layer-btn boundary-toggle active" id="boundaryToggle" title="Toggle site boundary polygons">Bounds</button>
+            </div>
+        </div>
+        
+        <div class="map-wrapper">
+            <div id="map"></div>
+            <div class="map-controls">
+                <button class="fs-toggle-btn" id="fullscreenToggle" title="Toggle Fullscreen">
+                    <svg id="icon-maximize" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                    </svg>
+                    <svg id="icon-minimize" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" style="display:none">
+                        <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="map-overlay">
+                Features: <span style="font-weight:600; color:var(--cyan)" id="featureCount">0</span>
+            </div>
+        </div>
+        
+        <div class="status-bar">
+            <div style="display: flex; align-items: center;">
+                <span class="status-dot ready" id="statusDot"></span>
+                <span id="statusText">Ready</span>
+            </div>
+            <span id="coordDisplay" style="font-family: monospace;">--</span>
+        </div>
+        
+        <!-- Generic confirmation modal -->
+        <div class="modal-overlay" id="genericModal">
+            <div class="modal-box">
+                <div class="modal-title" id="modalTitle">Title</div>
+                <div class="modal-message" id="modalMessage">Message</div>
+                <div class="modal-buttons">
+                    <button class="modal-btn cancel" id="modalCancel">Cancel</button>
+                    <button class="modal-btn primary" id="modalConfirm">Confirm</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature naming modal -->
+        <div class="modal-overlay" id="nameModal">
+            <div class="modal-box">
+                <div class="modal-title" id="nameModalTitle">Name this feature</div>
+                <div class="modal-message" id="nameModalMessage">Enter a name for this shape (optional)</div>
+                <input type="text" class="name-input" id="featureNameInput" placeholder="e.g., Stockpile A, Haul Road, Waypoint 1" maxlength="50" autocomplete="off">
+                <div class="modal-buttons">
+                    <button class="modal-btn cancel" id="nameModalSkip">Skip</button>
+                    <button class="modal-btn primary" id="nameModalSave">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // SITES config is loaded from config.js
+
+            const State = {
+                map: null,
+                drawSource: null,
+                drawInteraction: null,
+                featureHistory: [],
+                labelLayer: null,
+                boundaryLayer: null,
+                pendingFeature: null,
+                featureCounter: 0,
+                site: null
+            };
+
+            function getUrlParam(name) { return new URLSearchParams(window.location.search).get(name); }
+            function debug(msg) { 
+                const el = document.getElementById('debugPanel');
+                if (el) { el.classList.add('show'); el.innerHTML += msg + '<br>'; }
+                console.log('[Widget]', msg);
+            }
+
+            const Modal = {
+                el: document.getElementById('genericModal'),
+                titleEl: document.getElementById('modalTitle'),
+                msgEl: document.getElementById('modalMessage'),
+                confirmBtn: document.getElementById('modalConfirm'),
+                cancelBtn: document.getElementById('modalCancel'),
+
+                show(title, message, confirmText, type, onConfirm) {
+                    this.titleEl.textContent = title;
+                    this.msgEl.textContent = message;
+                    this.confirmBtn.textContent = confirmText || 'Confirm';
+                    this.confirmBtn.className = `modal-btn ${type === 'danger' ? 'danger' : 'primary'}`;
+                    
+                    const newConfirm = this.confirmBtn.cloneNode(true);
+                    this.confirmBtn.parentNode.replaceChild(newConfirm, this.confirmBtn);
+                    this.confirmBtn = newConfirm;
+
+                    this.confirmBtn.addEventListener('click', () => {
+                        this.hide();
+                        if (onConfirm) onConfirm();
+                    });
+
+                    this.el.classList.add('show');
+                },
+                hide() {
+                    this.el.classList.remove('show');
+                }
+            };
+
+            const NameModal = {
+                show(feature, featureType) {
+                    State.pendingFeature = feature;
+                    State.featureCounter++;
+                    const defaultName = `${featureType} ${State.featureCounter}`;
+                    
+                    document.getElementById('nameModalTitle').textContent = `Name this ${featureType.toLowerCase()}`;
+                    document.getElementById('nameModalMessage').textContent = `Enter a name to identify this ${featureType.toLowerCase()} in the exported KML`;
+                    
+                    const input = document.getElementById('featureNameInput');
+                    input.value = '';
+                    input.placeholder = `e.g., ${defaultName}, Stockpile A, Survey Area`;
+                    
+                    document.getElementById('nameModal').classList.add('show');
+                    setTimeout(() => input.focus(), 100);
+                },
+                save() {
+                    const input = document.getElementById('featureNameInput');
+                    const name = input.value.trim() || `Feature ${State.featureCounter}`;
+                    
+                    if (State.pendingFeature) {
+                        State.pendingFeature.set('name', name);
+                        updateLabels();
+                    }
+                    
+                    NameModal.hide();
+                    sendToJotForm();
+                    setStatus('ready', `"${name}" added`);
+                },
+                skip() {
+                    const defaultName = `Feature ${State.featureCounter}`;
+                    if (State.pendingFeature) {
+                        State.pendingFeature.set('name', defaultName);
+                        updateLabels();
+                    }
+                    NameModal.hide();
+                    sendToJotForm();
+                    setStatus('ready', 'Feature added');
+                },
+                hide() {
+                    document.getElementById('nameModal').classList.remove('show');
+                    State.pendingFeature = null;
+                }
+            };
+
+            function getFeatureTypeLabel(geometry) {
+                const type = geometry.getType();
+                switch(type) {
+                    case 'Polygon': return 'Polygon';
+                    case 'Point': return 'Waypoint';
+                    case 'LineString': return 'Line';
+                    case 'Circle': return 'Circle';
+                    default: return 'Feature';
+                }
+            }
+
+            // ─── Boundary Layer Styles ────────────────────────────────────
+            // Styles for site boundary polygons loaded from KML.
+            // White outline only (no fill) to distinguish from user-drawn features (cyan).
+            // Labels are extracted from KML <name> elements and rendered at polygon centres.
+
+            function createBoundaryStyle(feature) {
+                const name = feature.get('name') || '';
+                const styles = [
+                    new ol.style.Style({
+                        stroke: new ol.style.Stroke({ color: '#ffffff', width: 2 })
+                    })
+                ];
+
+                // Add label if the KML feature has a name
+                if (name) {
+                    styles.push(new ol.style.Style({
+                        text: new ol.style.Text({
+                            text: name,
+                            font: '500 12px DM Sans, sans-serif',
+                            fill: new ol.style.Fill({ color: '#ffffff' }),
+                            stroke: new ol.style.Stroke({ color: 'rgba(0, 0, 0, 0.6)', width: 3 }),
+                            overflow: true
+                        }),
+                        geometry: function(feature) {
+                            // Place label at polygon centroid
+                            const geom = feature.getGeometry();
+                            if (geom.getType() === 'Polygon' || geom.getType() === 'MultiPolygon') {
+                                const extent = geom.getExtent();
+                                return new ol.geom.Point(ol.extent.getCenter(extent));
+                            }
+                            return geom;
+                        }
+                    }));
+                }
+
+                return styles;
+            }
+
+            function initMap() {
+                const siteKey = getUrlParam('site');
+                State.site = SITES[siteKey];
+
+                if (!State.site) {
+                    debug('ERROR: Site key not found. Use ?site=key');
+                    document.getElementById('siteName').textContent = 'Configuration Error';
+                    return;
+                }
+
+                document.getElementById('siteName').textContent = State.site.name;
+                document.getElementById('siteInfo').textContent = State.site.company;
+
+                // ─── Base Layers ──────────────────────────────────────────
+                const osm = new ol.layer.Tile({ source: new ol.source.OSM(), visible: false, properties: {name: 'osm'} });
+                const satellite = new ol.layer.Tile({ 
+                    source: new ol.source.XYZ({ url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', maxZoom: 19 }), 
+                    visible: false,
+                    properties: {name: 'satellite'} 
+                });
+                
+                const ortho = new ol.layer.Tile({
+                    source: new ol.source.XYZ({ url: State.site.tileUrl, minZoom: 14, maxZoom: 21 }),
+                    visible: true,
+                    properties: {name: 'ortho'}
+                });
+
+                // ─── Boundary Layer (from KML) ───────────────────────────
+                // Loaded client-side so orthoimage tiles and boundary polygons
+                // are fully independent. Update either without touching the other.
+                const layers = [osm, satellite, ortho];
+
+                if (State.site.boundaryUrl) {
+                    State.boundaryLayer = new ol.layer.Vector({
+                        source: new ol.source.Vector({
+                            url: State.site.boundaryUrl,
+                            format: new ol.format.KML({
+                                extractStyles: false,   // Ignore KML styles, use ours
+                                showPointNames: false
+                            })
+                        }),
+                        style: createBoundaryStyle,
+                        visible: true,
+                        properties: { name: 'boundaries' }
+                    });
+
+                    // Log boundary load status for debugging
+                    State.boundaryLayer.getSource().on('featuresloadend', function() {
+                        const count = State.boundaryLayer.getSource().getFeatures().length;
+                        console.log('[Widget] Loaded ' + count + ' boundary feature(s) from KML');
+                    });
+                    State.boundaryLayer.getSource().on('featuresloaderror', function() {
+                        console.warn('[Widget] Failed to load boundary KML from: ' + State.site.boundaryUrl);
+                    });
+
+                    layers.push(State.boundaryLayer);
+                } else {
+                    // No boundary URL configured — hide the toggle button
+                    document.getElementById('boundaryToggle').style.display = 'none';
+                }
+
+                // ─── Draw Layer (user drawings) ──────────────────────────
+                State.drawSource = new ol.source.Vector();
+                const drawLayer = new ol.layer.Vector({
+                    source: State.drawSource,
+                    style: new ol.style.Style({
+                        fill: new ol.style.Fill({ color: 'rgba(10, 186, 239, 0.2)' }),
+                        stroke: new ol.style.Stroke({ color: '#0ABAEF', width: 2 }),
+                        image: new ol.style.Circle({ radius: 6, fill: new ol.style.Fill({ color: '#0ABAEF' }), stroke: new ol.style.Stroke({ color: '#fff', width: 2 }) })
+                    })
+                });
+
+                // ─── Label Layer (user feature names) ────────────────────
+                State.labelLayer = new ol.layer.Vector({
+                    source: new ol.source.Vector(),
+                    style: function(feature) {
+                        return new ol.style.Style({
+                            text: new ol.style.Text({
+                                text: feature.get('label'),
+                                font: '600 13px DM Sans, sans-serif',
+                                fill: new ol.style.Fill({ color: '#ffffff' }),
+                                backgroundFill: new ol.style.Fill({ color: 'rgba(15, 36, 88, 0.85)' }),
+                                padding: [4, 8, 4, 8],
+                                offsetY: -20
+                            })
+                        });
+                    }
+                });
+
+                layers.push(drawLayer, State.labelLayer);
+
+                // ─── Map Instance ─────────────────────────────────────────
+                State.map = new ol.Map({
+                    target: 'map',
+                    layers: layers,
+                    view: new ol.View({
+                        center: ol.proj.fromLonLat(State.site.center),
+                        zoom: State.site.defaultZoom,
+                        maxZoom: 21
+                    }),
+                    controls: ol.control.defaults.defaults({ zoom: false }).extend([new ol.control.ScaleLine()])
+                });
+
+                State.map.on('pointermove', evt => {
+                    const coords = ol.proj.toLonLat(evt.coordinate);
+                    document.getElementById('coordDisplay').textContent = `${coords[1].toFixed(5)}, ${coords[0].toFixed(5)}`;
+                });
+
+                State.drawSource.on('change', () => {
+                    document.getElementById('featureCount').textContent = State.drawSource.getFeatures().length;
+                });
+            }
+
+            function updateLabels() {
+                const labelSource = State.labelLayer.getSource();
+                labelSource.clear();
+                
+                State.drawSource.getFeatures().forEach(feature => {
+                    const name = feature.get('name');
+                    if (!name) return;
+                    
+                    let geom = feature.getGeometry();
+                    let labelPoint;
+                    
+                    // Get center point for label
+                    if (geom.getType() === 'Point') {
+                        labelPoint = geom.getCoordinates();
+                    } else if (geom.getType() === 'Circle') {
+                        labelPoint = geom.getCenter();
+                    } else {
+                        const extent = geom.getExtent();
+                        labelPoint = ol.extent.getCenter(extent);
+                    }
+                    
+                    const labelFeature = new ol.Feature({
+                        geometry: new ol.geom.Point(labelPoint),
+                        label: name
+                    });
+                    labelSource.addFeature(labelFeature);
+                });
+            }
+
+            function setTool(toolType) {
+                if (State.drawInteraction) State.map.removeInteraction(State.drawInteraction);
+                document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+                if (!toolType) { setStatus('ready', 'Ready'); return; }
+                document.querySelector(`[data-tool="${toolType}"]`).classList.add('active');
+                const geometryFunction = toolType === 'Box' ? ol.interaction.Draw.createBox() : undefined;
+                const type = (toolType === 'Box' || toolType === 'Circle') ? 'Circle' : toolType;
+                State.drawInteraction = new ol.interaction.Draw({ source: State.drawSource, type: type, geometryFunction: geometryFunction });
+                State.drawInteraction.on('drawstart', () => setStatus('drawing', 'Drawing...'));
+                State.drawInteraction.on('drawend', (e) => {
+                    State.featureHistory.push(e.feature);
+                    setStatus('ready', 'Name your feature...');
+                    
+                    // Determine feature type for the modal
+                    const geomType = e.feature.getGeometry().getType();
+                    let featureType = getFeatureTypeLabel(e.feature.getGeometry());
+                    if (toolType === 'Box') featureType = 'Rectangle';
+                    
+                    // Show naming modal
+                    NameModal.show(e.feature, featureType);
+                });
+                State.map.addInteraction(State.drawInteraction);
+                setStatus('ready', `${toolType} active`);
+            }
+
+            function setStatus(status, text) {
+                const dot = document.getElementById('statusDot');
+                dot.className = `status-dot ${status}`;
+                document.getElementById('statusText').textContent = text;
+            }
+
+            function switchLayer(layerName) {
+                document.querySelectorAll('.layer-btn:not(.boundary-toggle)').forEach(b => { b.classList.toggle('active', b.dataset.layer === layerName); });
+                State.map.getLayers().forEach(lyr => {
+                    const name = lyr.get('name');
+                    // Only toggle base layers (osm, satellite, ortho) — not boundaries or draw layers
+                    if (name === 'osm' || name === 'satellite' || name === 'ortho') {
+                        lyr.setVisible(name === layerName);
+                    }
+                });
+            }
+
+            function toggleBoundaries() {
+                if (!State.boundaryLayer) return;
+                const btn = document.getElementById('boundaryToggle');
+                const isVisible = State.boundaryLayer.getVisible();
+                State.boundaryLayer.setVisible(!isVisible);
+                btn.classList.toggle('active', !isVisible);
+            }
+
+            function clearFeatures() {
+                if (State.drawSource.getFeatures().length === 0) return;
+                Modal.show('Clear All Features?', 'This will remove all shapes you have drawn. This action cannot be undone.', 'Clear All', 'danger', () => {
+                    State.drawSource.clear();
+                    State.labelLayer.getSource().clear();
+                    State.featureHistory = [];
+                    State.featureCounter = 0;
+                    sendToJotForm();
+                    setStatus('ready', 'Canvas cleared');
+                });
+            }
+
+            function toggleFullscreen() {
+                const doc = document.documentElement;
+                if (!document.fullscreenElement) {
+                    Modal.show('Enter Fullscreen Mode?', 'This will maximize the map. You can exit by pressing ESC.', 'Go Fullscreen', 'primary', () => {
+                        if (doc.requestFullscreen) doc.requestFullscreen();
+                        else if (doc.webkitRequestFullscreen) doc.webkitRequestFullscreen();
+                        else if (doc.msRequestFullscreen) doc.msRequestFullscreen();
+                    });
+                } else {
+                    if (document.exitFullscreen) document.exitFullscreen();
+                    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                }
+            }
+
+            function updateFullscreenUI() {
+                const isFs = !!document.fullscreenElement;
+                document.getElementById('icon-maximize').style.display = isFs ? 'none' : 'block';
+                document.getElementById('icon-minimize').style.display = isFs ? 'block' : 'none';
+                document.getElementById('fullscreenToggle').title = isFs ? "Exit Fullscreen" : "Toggle Fullscreen";
+                setTimeout(() => State.map && State.map.updateSize(), 200);
+            }
+
+            const qid = getUrlParam('qid');
+            const inJotForm = (window.self !== window.top) && qid;
+
+            function generateKMLString() {
+                const features = State.drawSource.getFeatures();
+                if (!features.length) return '';
+                
+                // Build KML manually for FlightHub 2 compatibility
+                let placemarks = '';
+                
+                features.forEach((feature, index) => {
+                    let geom = feature.getGeometry().clone();
+                    const featureName = feature.get('name') || `Feature ${index + 1}`;
+                    
+                    // Convert Circle to Polygon (KML doesn't support circles)
+                    if (geom.getType() === 'Circle') {
+                        geom = ol.geom.Polygon.fromCircle(geom, 64);
+                    }
+                    
+                    // Transform to WGS84
+                    geom.transform('EPSG:3857', 'EPSG:4326');
+                    
+                    const geomType = geom.getType();
+                    let geometryKML = '';
+                    
+                    if (geomType === 'Polygon') {
+                        const coords = geom.getCoordinates()[0];
+                        const coordString = coords.map(c => `${c[0]},${c[1]},0`).join(' ');
+                        geometryKML = '<Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing><coordinates>' + coordString + '</coordinates></LinearRing></outerBoundaryIs></Polygon>';
+                    } else if (geomType === 'Point') {
+                        const coords = geom.getCoordinates();
+                        geometryKML = '<Point><coordinates>' + coords[0] + ',' + coords[1] + ',0</coordinates></Point>';
+                    } else if (geomType === 'LineString') {
+                        const coords = geom.getCoordinates();
+                        const coordString = coords.map(c => `${c[0]},${c[1]},0`).join(' ');
+                        geometryKML = '<LineString><tessellate>1</tessellate><coordinates>' + coordString + '</coordinates></LineString>';
+                    }
+                    
+                    // Use feature name in KML
+                    placemarks += '<Placemark><n>' + escapeXml(featureName) + '</n><Style><LineStyle><color>ff00aaff</color><width>2</width></LineStyle><PolyStyle><color>4c00aaff</color></PolyStyle></Style>' + geometryKML + '</Placemark>';
+                });
+                
+                const kml = '<?xml version="1.0" encoding="UTF-8"?><kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2"><Document><n>Mission Area</n>' + placemarks + '</Document></kml>';
+                
+                return kml;
+            }
+
+            function escapeXml(str) {
+                return str.replace(/&/g, '&amp;')
+                          .replace(/</g, '&lt;')
+                          .replace(/>/g, '&gt;')
+                          .replace(/"/g, '&quot;')
+                          .replace(/'/g, '&apos;');
+            }
+
+            function downloadKML() {
+                const kml = generateKMLString();
+                if (!kml) { setStatus('ready', 'Nothing to download'); return; }
+                const blob = new Blob([kml], {type: 'application/vnd.google-earth.kml+xml'});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `map-drawing-${Date.now()}.kml`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                setStatus('ready', 'Download started');
+            }
+
+            function sendToJotForm() {
+                if (!inJotForm) return;
+                const kml = generateKMLString();
+                window.parent.postMessage(JSON.stringify({ type: 'data', qid: qid, value: kml, valid: true }), '*');
+            }
+
+            function init() {
+                initMap();
+                document.querySelectorAll('.tool-btn[data-tool]').forEach(btn => {
+                    btn.addEventListener('click', () => setTool(btn.classList.contains('active') ? null : btn.dataset.tool));
+                });
+                document.getElementById('undoBtn').addEventListener('click', () => {
+                    if (State.featureHistory.length) {
+                        State.drawSource.removeFeature(State.featureHistory.pop());
+                        updateLabels();
+                        sendToJotForm();
+                    }
+                });
+                document.getElementById('clearBtn').addEventListener('click', clearFeatures);
+                document.getElementById('downloadBtn').addEventListener('click', downloadKML);
+                document.querySelectorAll('.layer-btn:not(.boundary-toggle)').forEach(btn => {
+                    btn.addEventListener('click', () => switchLayer(btn.dataset.layer));
+                });
+                document.getElementById('boundaryToggle').addEventListener('click', toggleBoundaries);
+                document.getElementById('fullscreenToggle').addEventListener('click', toggleFullscreen);
+                document.addEventListener('fullscreenchange', updateFullscreenUI);
+                Modal.cancelBtn.addEventListener('click', () => Modal.hide());
+                document.getElementById('genericModal').addEventListener('click', (e) => { if(e.target.id === 'genericModal') Modal.hide(); });
+                
+                // Name modal event listeners
+                document.getElementById('nameModalSave').addEventListener('click', () => NameModal.save());
+                document.getElementById('nameModalSkip').addEventListener('click', () => NameModal.skip());
+                document.getElementById('featureNameInput').addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') NameModal.save();
+                    if (e.key === 'Escape') NameModal.skip();
+                });
+                
+                let resizeTimer;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(() => State.map && State.map.updateSize(), 100);
+                });
+                if (inJotForm) { 
+                    window.parent.postMessage(JSON.stringify({ type: 'frameReady', qid: qid }), '*');
+                    sendToJotForm();
+                    
+                    // Listen for submit request from JotForm
+                    window.addEventListener('message', function(e) {
+                        try {
+                            const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+                            if (data.type === 'submit') {
+                                const kml = generateKMLString();
+                                window.parent.postMessage(JSON.stringify({
+                                    type: 'submit',
+                                    qid: qid,
+                                    value: kml,
+                                    valid: true
+                                }), '*');
+                            }
+                        } catch (err) {}
+                    });
+                }
+            }
+
+            init();
+        })();
+    </script>
+</body>
+</html>
