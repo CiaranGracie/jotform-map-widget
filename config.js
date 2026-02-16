@@ -82,7 +82,7 @@ const SITES = {
         company: 'Whitehaven',
         tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/blackwater/{z}/{x}/{y}.png',
         boundaryUrl: `${BOUNDARY_BASE}/blackwater_boundaries.kml`,
-        center: [148.82, -23.74],
+        center: [148.82, --23.73],
         defaultZoom: 15
     }
 };
