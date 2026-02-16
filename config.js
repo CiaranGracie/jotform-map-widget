@@ -76,5 +76,13 @@ const SITES = {
         boundaryUrl: `${BOUNDARY_BASE}/caval-ridge_boundaries.kml`,
         center: [148.06, -22.12],
         defaultZoom: 15
+    },
+    'blackwater': {
+        name: 'Blackwater',
+        company: 'Whitehaven',
+        tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/blackwater/{z}/{x}/{y}.png',
+        boundaryUrl: `${BOUNDARY_BASE}/blackwater_boundaries.kml`,
+        center: [148.82, -23.74],
+        defaultZoom: 15
     }
 };
