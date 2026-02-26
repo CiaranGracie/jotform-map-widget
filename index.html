@@ -168,18 +168,6 @@
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
         
         .layer-selector { display: flex; gap: 4px; margin-left: auto; }
-        .layer-btn {
-            padding: 6px 10px;
-            font-size: 11px;
-            font-weight: 500;
-            background: var(--light-bg);
-            border: 1px solid #d9e4ef;
-            border-radius: 4px;
-            cursor: pointer;
-            color: var(--navy);
-        }
-        .layer-btn.active { background: var(--navy); color: var(--white); }
-        .layer-btn.boundary-toggle.active { background: var(--blue-mid); color: var(--white); border-color: var(--blue-mid); }
         
         .modal-overlay {
             position: fixed;
@@ -277,6 +265,123 @@
             white-space: nowrap;
             pointer-events: none;
         }
+
+        /* ─── Layer Panel ──────────────────────────────────── */
+        .layer-panel {
+            position: absolute;
+            top: 12px;
+            right: 52px;
+            z-index: 200;
+            width: 220px;
+            background: var(--navy);
+            border-radius: 10px;
+            box-shadow: var(--shadow-lg);
+            color: var(--white);
+            font-size: 13px;
+            transform: translateX(calc(100% + 52px));
+            opacity: 0;
+            transition: transform 0.25s ease, opacity 0.2s ease;
+            pointer-events: none;
+        }
+        .layer-panel.open {
+            transform: translateX(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .layer-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 14px 8px;
+        }
+        .layer-panel-title {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .layer-panel-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0.7;
+            line-height: 1;
+            padding: 0 2px;
+        }
+        .layer-panel-close:hover { opacity: 1; }
+        .layer-panel-section {
+            padding: 8px 14px 12px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .layer-panel-section-title {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.5;
+            margin-bottom: 6px;
+        }
+        .layer-radio, .layer-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 0;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .layer-radio input, .layer-checkbox input {
+            accent-color: var(--cyan);
+            cursor: pointer;
+        }
+
+        /* ─── Upload Modal ─────────────────────────────────── */
+        .upload-section { margin-bottom: 4px; }
+        .upload-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+        .upload-select {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 13px;
+            font-family: inherit;
+            border: 2px solid var(--light-bg);
+            border-radius: 8px;
+            background: var(--white);
+            color: var(--navy);
+            cursor: pointer;
+        }
+        .upload-select:focus { outline: none; border-color: var(--cyan); }
+        .upload-filename {
+            font-size: 12px;
+            color: var(--blue-mid);
+            margin-top: 4px;
+            word-break: break-all;
+        }
+        .upload-progress {
+            height: 6px;
+            background: var(--light-bg);
+            border-radius: 3px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .upload-progress-bar {
+            height: 100%;
+            background: var(--cyan);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .upload-status {
+            font-size: 12px;
+            margin-top: 6px;
+            min-height: 18px;
+        }
+        .upload-status.error { color: var(--orange); }
+        .upload-status.success { color: var(--green); }
     </style>
 </head>
 <body>
@@ -334,10 +439,12 @@
             </div>
             
             <div class="layer-selector">
-                <button class="layer-btn" data-layer="osm">Street</button>
-                <button class="layer-btn" data-layer="satellite">Sat</button>
-                <button class="layer-btn active" data-layer="ortho" id="orthoBtn">Ortho</button>
-                <button class="layer-btn boundary-toggle active" id="boundaryToggle" title="Toggle site area polygons">Boundaries</button>
+                <button class="tool-btn" id="layerPanelToggle" title="Toggle layer panel">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg> Layers
+                </button>
+                <button class="tool-btn" id="uploadPanelToggle" title="Upload data">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Upload
+                </button>
             </div>
         </div>
         
@@ -355,6 +462,24 @@
             </div>
             <div class="map-overlay">
                 Features: <span style="font-weight:600; color:var(--cyan)" id="featureCount">0</span>
+            </div>
+
+            <!-- Layer Panel -->
+            <div class="layer-panel" id="layerPanel">
+                <div class="layer-panel-header">
+                    <span class="layer-panel-title">Layers</span>
+                    <button class="layer-panel-close" id="layerPanelClose">&times;</button>
+                </div>
+                <div class="layer-panel-section">
+                    <div class="layer-panel-section-title">Base Map</div>
+                    <label class="layer-radio"><input type="radio" name="baseLayer" value="ortho" checked> Orthoimage</label>
+                    <label class="layer-radio"><input type="radio" name="baseLayer" value="satellite"> Satellite</label>
+                    <label class="layer-radio"><input type="radio" name="baseLayer" value="osm"> Street</label>
+                </div>
+                <div class="layer-panel-section">
+                    <div class="layer-panel-section-title">Overlays</div>
+                    <div id="overlayCheckboxes"></div>
+                </div>
             </div>
         </div>
         
@@ -390,6 +515,57 @@
                 </div>
             </div>
         </div>
+
+        <!-- Upload modal -->
+        <div class="modal-overlay" id="uploadModal">
+            <div class="modal-box" style="max-width: 420px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px;">
+                    <div class="modal-title" style="margin-bottom:0">Upload Data</div>
+                    <button class="layer-panel-close" id="uploadModalClose" style="color:var(--navy)">&times;</button>
+                </div>
+
+                <div class="upload-section">
+                    <label class="upload-label">Site</label>
+                    <select class="upload-select" id="uploadSite"></select>
+                </div>
+
+                <div class="upload-section">
+                    <label class="upload-label">Secret Key</label>
+                    <input type="password" class="name-input" id="uploadSecret" placeholder="Enter upload secret" style="margin-bottom:0">
+                </div>
+
+                <hr style="border:none; border-top:1px solid var(--light-bg); margin: 16px 0;">
+
+                <div class="upload-section">
+                    <div class="upload-label">Orthoimage (GeoTIFF)</div>
+                    <input type="file" id="tifFileInput" accept=".tif,.tiff" style="display:none">
+                    <button class="tool-btn" id="tifChooseBtn" style="width:100%; justify-content:center;">Choose TIF file...</button>
+                    <div class="upload-filename" id="tifFilename"></div>
+                    <button class="modal-btn primary" id="tifUploadBtn" style="width:100%; margin-top:8px; display:none;">Upload &amp; Generate Tiles</button>
+                    <div class="upload-progress" id="tifProgress" style="display:none;">
+                        <div class="upload-progress-bar" id="tifProgressBar"></div>
+                    </div>
+                    <div class="upload-status" id="tifStatus"></div>
+                </div>
+
+                <hr style="border:none; border-top:1px solid var(--light-bg); margin: 16px 0;">
+
+                <div class="upload-section">
+                    <div class="upload-label">KML Overlay</div>
+                    <select class="upload-select" id="uploadLayerType">
+                        <option value="boundaries">Site Areas (Boundaries)</option>
+                        <option value="infrastructure">Infrastructure</option>
+                        <option value="nfz-permanent">No Fly Zones (Permanent)</option>
+                        <option value="nfz-daily">No Fly Zones (Daily)</option>
+                    </select>
+                    <input type="file" id="kmlFileInput" accept=".kml" style="display:none; margin-top:8px;">
+                    <button class="tool-btn" id="kmlChooseBtn" style="width:100%; justify-content:center; margin-top:8px;">Choose KML file...</button>
+                    <div class="upload-filename" id="kmlFilename"></div>
+                    <button class="modal-btn primary" id="kmlUploadBtn" style="width:100%; margin-top:8px; display:none;">Upload KML</button>
+                    <div class="upload-status" id="kmlStatus"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -404,10 +580,17 @@
                 drawInteraction: null,
                 featureHistory: [],
                 labelLayer: null,
-                boundaryLayer: null,
+                vectorLayers: {},
                 pendingFeature: null,
                 featureCounter: 0,
                 site: null
+            };
+
+            const LAYER_CONFIG = {
+                boundaries:     { style: null, label: 'Site Areas' },
+                infrastructure: { style: null, label: 'Infrastructure' },
+                nfzPermanent:   { style: null, label: 'No Fly Zones (Permanent)' },
+                nfzDaily:       { style: null, label: 'No Fly Zones (Daily)' }
             };
 
             function getUrlParam(name) { return new URLSearchParams(window.location.search).get(name); }
@@ -502,7 +685,28 @@
                 }
             }
 
-            // ─── Boundary Layer Style ─────────────────────────────────
+            // ─── Layer Style Functions ────────────────────────────────
+
+            function labelStyle(name, fillColor, strokeColor) {
+                if (!name) return null;
+                return new ol.style.Style({
+                    text: new ol.style.Text({
+                        text: name,
+                        font: '500 12px DM Sans, sans-serif',
+                        fill: new ol.style.Fill({ color: fillColor }),
+                        stroke: new ol.style.Stroke({ color: strokeColor, width: 3 }),
+                        overflow: true
+                    }),
+                    geometry: function(feature) {
+                        const geom = feature.getGeometry();
+                        if (geom.getType() === 'Polygon' || geom.getType() === 'MultiPolygon') {
+                            return new ol.geom.Point(ol.extent.getCenter(geom.getExtent()));
+                        }
+                        return geom;
+                    }
+                });
+            }
+
             function createBoundaryStyle(feature) {
                 const name = feature.get('name') || '';
                 const styles = [
@@ -510,26 +714,61 @@
                         stroke: new ol.style.Stroke({ color: '#ffffff', width: 2 })
                     })
                 ];
+                const lbl = labelStyle(name, '#ffffff', 'rgba(0, 0, 0, 0.6)');
+                if (lbl) styles.push(lbl);
+                return styles;
+            }
 
-                if (name) {
-                    styles.push(new ol.style.Style({
-                        text: new ol.style.Text({
-                            text: name,
-                            font: '500 12px DM Sans, sans-serif',
-                            fill: new ol.style.Fill({ color: '#ffffff' }),
-                            stroke: new ol.style.Stroke({ color: 'rgba(0, 0, 0, 0.6)', width: 3 }),
-                            overflow: true
-                        }),
-                        geometry: function(feature) {
-                            const geom = feature.getGeometry();
-                            if (geom.getType() === 'Polygon' || geom.getType() === 'MultiPolygon') {
-                                return new ol.geom.Point(ol.extent.getCenter(geom.getExtent()));
-                            }
-                            return geom;
-                        }
-                    }));
-                }
+            function createInfraStyle(feature) {
+                const name = feature.get('name') || '';
+                const styles = [
+                    new ol.style.Style({
+                        stroke: new ol.style.Stroke({ color: '#F59E0B', width: 2, lineDash: [8, 6] }),
+                        image: new ol.style.Circle({
+                            radius: 5,
+                            fill: new ol.style.Fill({ color: '#F59E0B' }),
+                            stroke: new ol.style.Stroke({ color: '#ffffff', width: 1.5 })
+                        })
+                    })
+                ];
+                const lbl = labelStyle(name, '#FEE980', 'rgba(0, 0, 0, 0.7)');
+                if (lbl) styles.push(lbl);
+                return styles;
+            }
 
+            function createNfzPermStyle(feature) {
+                const name = feature.get('name') || '';
+                const styles = [
+                    new ol.style.Style({
+                        fill: new ol.style.Fill({ color: 'rgba(239, 68, 68, 0.2)' }),
+                        stroke: new ol.style.Stroke({ color: '#EF4444', width: 2 }),
+                        image: new ol.style.Circle({
+                            radius: 5,
+                            fill: new ol.style.Fill({ color: '#EF4444' }),
+                            stroke: new ol.style.Stroke({ color: '#ffffff', width: 1.5 })
+                        })
+                    })
+                ];
+                const lbl = labelStyle(name, '#FCA5A5', 'rgba(0, 0, 0, 0.7)');
+                if (lbl) styles.push(lbl);
+                return styles;
+            }
+
+            function createNfzDailyStyle(feature) {
+                const name = feature.get('name') || '';
+                const styles = [
+                    new ol.style.Style({
+                        fill: new ol.style.Fill({ color: 'rgba(251, 146, 60, 0.2)' }),
+                        stroke: new ol.style.Stroke({ color: '#FB923C', width: 2, lineDash: [10, 5] }),
+                        image: new ol.style.Circle({
+                            radius: 5,
+                            fill: new ol.style.Fill({ color: '#FB923C' }),
+                            stroke: new ol.style.Stroke({ color: '#ffffff', width: 1.5 })
+                        })
+                    })
+                ];
+                const lbl = labelStyle(name, '#FDBA74', 'rgba(0, 0, 0, 0.7)');
+                if (lbl) styles.push(lbl);
                 return styles;
             }
 
@@ -542,6 +781,11 @@
                     document.getElementById('siteName').textContent = 'Configuration Error';
                     return;
                 }
+
+                LAYER_CONFIG.boundaries.style = createBoundaryStyle;
+                LAYER_CONFIG.infrastructure.style = createInfraStyle;
+                LAYER_CONFIG.nfzPermanent.style = createNfzPermStyle;
+                LAYER_CONFIG.nfzDaily.style = createNfzDailyStyle;
 
                 document.getElementById('siteName').textContent = State.site.name;
                 document.getElementById('siteInfo').textContent = State.site.company;
@@ -561,28 +805,33 @@
 
                 const layers = [osm, satellite, ortho];
 
-                // ─── Boundary Layer (from KML) ───────────────────────
-                if (State.site.boundaryUrl) {
-                    State.boundaryLayer = new ol.layer.Vector({
-                        source: new ol.source.Vector({
-                            url: State.site.boundaryUrl,
-                            format: new ol.format.KML({ extractStyles: false, showPointNames: false })
-                        }),
-                        style: createBoundaryStyle,
-                        visible: true,
-                        properties: { name: 'boundaries' }
-                    });
+                // ─── Vector Overlay Layers (from KML) ────────────────
+                if (State.site.layers) {
+                    for (const [key, url] of Object.entries(State.site.layers)) {
+                        if (!url) continue;
+                        const cfg = LAYER_CONFIG[key];
+                        if (!cfg) continue;
 
-                    State.boundaryLayer.getSource().on('featuresloadend', function() {
-                        console.log('[Widget] Loaded ' + State.boundaryLayer.getSource().getFeatures().length + ' boundary feature(s)');
-                    });
-                    State.boundaryLayer.getSource().on('featuresloaderror', function() {
-                        console.warn('[Widget] Failed to load boundary KML from: ' + State.site.boundaryUrl);
-                    });
+                        const layer = new ol.layer.Vector({
+                            source: new ol.source.Vector({
+                                url: url,
+                                format: new ol.format.KML({ extractStyles: false, showPointNames: false })
+                            }),
+                            style: cfg.style,
+                            visible: true,
+                            properties: { name: key, label: cfg.label }
+                        });
 
-                    layers.push(State.boundaryLayer);
-                } else {
-                    document.getElementById('boundaryToggle').style.display = 'none';
+                        layer.getSource().on('featuresloadend', function() {
+                            console.log('[Widget] Loaded ' + layer.getSource().getFeatures().length + ' ' + key + ' feature(s)');
+                        });
+                        layer.getSource().on('featuresloaderror', function() {
+                            console.warn('[Widget] Failed to load ' + key + ' KML from: ' + url);
+                        });
+
+                        State.vectorLayers[key] = layer;
+                        layers.push(layer);
+                    }
                 }
 
                 // ─── Draw Layer ──────────────────────────────────────
@@ -689,25 +938,27 @@
                 document.getElementById('statusText').textContent = text;
             }
 
-            // Only toggle base layers — leave boundaries, draw, and labels untouched
-            function switchLayer(layerName) {
-                document.querySelectorAll('.layer-btn:not(.boundary-toggle)').forEach(b => {
-                    b.classList.toggle('active', b.dataset.layer === layerName);
-                });
+            function switchBaseLayer(layerName) {
                 State.map.getLayers().forEach(lyr => {
                     const name = lyr.get('name');
                     if (name === 'osm' || name === 'satellite' || name === 'ortho') {
                         lyr.setVisible(name === layerName);
                     }
                 });
+                document.querySelectorAll('input[name="baseLayer"]').forEach(r => {
+                    r.checked = (r.value === layerName);
+                });
             }
 
-            function toggleBoundaries() {
-                if (!State.boundaryLayer) return;
-                const btn = document.getElementById('boundaryToggle');
-                const isVisible = State.boundaryLayer.getVisible();
-                State.boundaryLayer.setVisible(!isVisible);
-                btn.classList.toggle('active', !isVisible);
+            function toggleOverlay(key, visible) {
+                const layer = State.vectorLayers[key];
+                if (!layer) return;
+                layer.setVisible(visible);
+            }
+
+            function toggleLayerPanel() {
+                const panel = document.getElementById('layerPanel');
+                panel.classList.toggle('open');
             }
 
             function clearFeatures() {
@@ -816,6 +1067,206 @@
                 window.parent.postMessage(JSON.stringify({ type: 'data', qid: qid, value: kml, valid: true }), '*');
             }
 
+            function buildOverlayCheckboxes() {
+                const container = document.getElementById('overlayCheckboxes');
+                container.innerHTML = '';
+                for (const [key, cfg] of Object.entries(LAYER_CONFIG)) {
+                    const layer = State.vectorLayers[key];
+                    if (!layer) continue;
+                    const label = document.createElement('label');
+                    label.className = 'layer-checkbox';
+                    const cb = document.createElement('input');
+                    cb.type = 'checkbox';
+                    cb.checked = true;
+                    cb.addEventListener('change', () => toggleOverlay(key, cb.checked));
+                    label.appendChild(cb);
+                    label.appendChild(document.createTextNode(cfg.label));
+                    container.appendChild(label);
+                }
+                if (!container.children.length) {
+                    container.innerHTML = '<div style="opacity:0.5; font-size:12px; padding:4px 0;">No overlays for this site</div>';
+                }
+            }
+
+            // ─── Upload Modal Logic ──────────────────────────────
+            function initUploadModal() {
+                const uploadToggle = document.getElementById('uploadPanelToggle');
+                const uploadModal = document.getElementById('uploadModal');
+                const uploadClose = document.getElementById('uploadModalClose');
+
+                uploadToggle.addEventListener('click', () => {
+                    populateSiteSelector();
+                    uploadModal.classList.add('show');
+                });
+                uploadClose.addEventListener('click', () => uploadModal.classList.remove('show'));
+                uploadModal.addEventListener('click', (e) => { if (e.target === uploadModal) uploadModal.classList.remove('show'); });
+
+                document.getElementById('tifChooseBtn').addEventListener('click', () => document.getElementById('tifFileInput').click());
+                document.getElementById('tifFileInput').addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        document.getElementById('tifFilename').textContent = file.name + ' (' + (file.size / 1024 / 1024).toFixed(1) + ' MB)';
+                        document.getElementById('tifUploadBtn').style.display = 'block';
+                    }
+                });
+
+                document.getElementById('kmlChooseBtn').addEventListener('click', () => document.getElementById('kmlFileInput').click());
+                document.getElementById('kmlFileInput').addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        document.getElementById('kmlFilename').textContent = file.name;
+                        document.getElementById('kmlUploadBtn').style.display = 'block';
+                    }
+                });
+
+                document.getElementById('tifUploadBtn').addEventListener('click', uploadTif);
+                document.getElementById('kmlUploadBtn').addEventListener('click', uploadKml);
+            }
+
+            function populateSiteSelector() {
+                const sel = document.getElementById('uploadSite');
+                if (sel.options.length > 0) return;
+                for (const [key, site] of Object.entries(SITES)) {
+                    const opt = document.createElement('option');
+                    opt.value = key;
+                    opt.textContent = site.name + ' (' + site.company + ')';
+                    if (State.site && State.site.name === site.name) opt.selected = true;
+                    sel.appendChild(opt);
+                }
+            }
+
+            function getUploadHeaders() {
+                return { 'X-Upload-Secret': document.getElementById('uploadSecret').value.trim() };
+            }
+
+            function uploadTif() {
+                const file = document.getElementById('tifFileInput').files[0];
+                if (!file) return;
+                if (!SERVER_URL) { showUploadStatus('tifStatus', 'Server URL not configured in config.js', true); return; }
+
+                const site = document.getElementById('uploadSite').value;
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('site', site);
+
+                const xhr = new XMLHttpRequest();
+                const progressEl = document.getElementById('tifProgress');
+                const barEl = document.getElementById('tifProgressBar');
+                const statusEl = document.getElementById('tifStatus');
+                const btn = document.getElementById('tifUploadBtn');
+
+                progressEl.style.display = 'block';
+                btn.disabled = true;
+                btn.textContent = 'Uploading...';
+                statusEl.textContent = '';
+                statusEl.className = 'upload-status';
+
+                xhr.upload.onprogress = (e) => {
+                    if (e.lengthComputable) {
+                        barEl.style.width = Math.round(e.loaded / e.total * 100) + '%';
+                    }
+                };
+
+                xhr.onload = function() {
+                    if (xhr.status === 202) {
+                        const data = JSON.parse(xhr.responseText);
+                        barEl.style.width = '100%';
+                        statusEl.textContent = 'Upload complete. Generating tiles...';
+                        pollTifStatus(data.jobId);
+                    } else {
+                        try { showUploadStatus('tifStatus', JSON.parse(xhr.responseText).error, true); }
+                        catch { showUploadStatus('tifStatus', 'Upload failed (HTTP ' + xhr.status + ')', true); }
+                        btn.disabled = false;
+                        btn.textContent = 'Upload & Generate Tiles';
+                    }
+                };
+
+                xhr.onerror = function() {
+                    showUploadStatus('tifStatus', 'Network error — is the server running?', true);
+                    btn.disabled = false;
+                    btn.textContent = 'Upload & Generate Tiles';
+                };
+
+                xhr.open('POST', SERVER_URL + '/api/upload-tif');
+                const headers = getUploadHeaders();
+                for (const [k, v] of Object.entries(headers)) xhr.setRequestHeader(k, v);
+                xhr.send(formData);
+            }
+
+            function pollTifStatus(jobId) {
+                const statusEl = document.getElementById('tifStatus');
+                const btn = document.getElementById('tifUploadBtn');
+
+                const poll = () => {
+                    fetch(SERVER_URL + '/api/status/' + jobId)
+                        .then(r => r.json())
+                        .then(data => {
+                            statusEl.textContent = data.message || data.status;
+                            if (data.status === 'complete') {
+                                statusEl.className = 'upload-status success';
+                                btn.disabled = false;
+                                btn.textContent = 'Upload & Generate Tiles';
+                            } else if (data.status === 'error') {
+                                statusEl.className = 'upload-status error';
+                                btn.disabled = false;
+                                btn.textContent = 'Upload & Generate Tiles';
+                            } else {
+                                setTimeout(poll, 3000);
+                            }
+                        })
+                        .catch(() => {
+                            showUploadStatus('tifStatus', 'Lost connection to server', true);
+                            btn.disabled = false;
+                            btn.textContent = 'Upload & Generate Tiles';
+                        });
+                };
+                setTimeout(poll, 2000);
+            }
+
+            function uploadKml() {
+                const file = document.getElementById('kmlFileInput').files[0];
+                if (!file) return;
+                if (!SERVER_URL) { showUploadStatus('kmlStatus', 'Server URL not configured in config.js', true); return; }
+
+                const site = document.getElementById('uploadSite').value;
+                const layerType = document.getElementById('uploadLayerType').value;
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('site', site);
+                formData.append('layerType', layerType);
+
+                const btn = document.getElementById('kmlUploadBtn');
+                btn.disabled = true;
+                btn.textContent = 'Uploading...';
+
+                fetch(SERVER_URL + '/api/upload-kml', {
+                    method: 'POST',
+                    headers: getUploadHeaders(),
+                    body: formData
+                })
+                .then(r => r.json().then(d => ({ ok: r.ok, data: d })))
+                .then(({ ok, data }) => {
+                    if (ok) {
+                        showUploadStatus('kmlStatus', 'Uploaded to ' + data.url, false);
+                    } else {
+                        showUploadStatus('kmlStatus', data.error || 'Upload failed', true);
+                    }
+                    btn.disabled = false;
+                    btn.textContent = 'Upload KML';
+                })
+                .catch(() => {
+                    showUploadStatus('kmlStatus', 'Network error — is the server running?', true);
+                    btn.disabled = false;
+                    btn.textContent = 'Upload KML';
+                });
+            }
+
+            function showUploadStatus(elId, msg, isError) {
+                const el = document.getElementById(elId);
+                el.textContent = msg;
+                el.className = 'upload-status ' + (isError ? 'error' : 'success');
+            }
+
             function init() {
                 initMap();
                 document.querySelectorAll('.tool-btn[data-tool]').forEach(btn => {
@@ -830,10 +1281,15 @@
                 });
                 document.getElementById('clearBtn').addEventListener('click', clearFeatures);
                 document.getElementById('downloadBtn').addEventListener('click', downloadKML);
-                document.querySelectorAll('.layer-btn:not(.boundary-toggle)').forEach(btn => {
-                    btn.addEventListener('click', () => switchLayer(btn.dataset.layer));
+                document.getElementById('layerPanelToggle').addEventListener('click', toggleLayerPanel);
+                document.getElementById('layerPanelClose').addEventListener('click', toggleLayerPanel);
+                document.querySelectorAll('input[name="baseLayer"]').forEach(r => {
+                    r.addEventListener('change', () => switchBaseLayer(r.value));
                 });
-                document.getElementById('boundaryToggle').addEventListener('click', toggleBoundaries);
+                buildOverlayCheckboxes();
+
+                initUploadModal();
+
                 document.getElementById('fullscreenToggle').addEventListener('click', toggleFullscreen);
                 document.addEventListener('fullscreenchange', updateFullscreenUI);
                 Modal.cancelBtn.addEventListener('click', () => Modal.hide());
