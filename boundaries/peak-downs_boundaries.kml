@@ -41,7 +41,7 @@
 		</PolyStyle>
 	</Style>
 	<Placemark>
-		<name>2S_E</name>
+		<name>2S East</name>
 		<styleUrl>#dji_style_Polygon19BE6B</styleUrl>
 		<ExtendedData>
 			<Data name="color" type="string">
