@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>KOTH_boundaries.kml</name>
+	<open>1</open>
+	<atom:link rel="app" href="https://www.google.com/earth/about/versions/#earth-pro" title="Google Earth Pro 7.3.6.10441"></atom:link>
+	<Style id="dji_style_Polygon000000">
+		<LineStyle>
+			<color>ff000000</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80000000</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_Polygon19BE6B">
+		<LineStyle>
+			<color>ff6bbe19</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>806bbe19</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_Polygon2D8CF0">
+		<LineStyle>
+			<color>fff08c2d</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80f08c2d</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_PolygonB620E0">
+		<LineStyle>
+			<color>ffe020b6</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80e020b6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_PolygonE23C39">
+		<LineStyle>
+			<color>ff393ce2</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80393ce2</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_PolygonFFBB00">
+		<LineStyle>
+			<color>ff00bbff</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000bbff</color>
+		</PolyStyle>
+	</Style>
+	<Placemark>
+		<styleUrl>#dji_style_Polygon000000</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#000000</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.160383056,-28.67141106699999,340.402932208575 121.159482265,-28.67299460699999,314.7333883260933 121.158430332,-28.67417890499999,314.1015369524485 121.157836107,-28.67631603099999,347.9174106787906 121.158893733,-28.678100869,384.9068591106336 121.161107061,-28.67848634199999,386.0380391671295 121.161936291,-28.67910715799999,380.625471245062 121.163799634,-28.67706000699996,384.841342008301 121.168315346,-28.67393576199999,402.246327566173 121.169047025,-28.67128361000001,391.3850663579051 121.166971888,-28.66764596399999,302.6159376911186 121.16328902,-28.666047323,338.8726247093403 121.162330163,-28.66696166099999,381.4410918314211 121.160383056,-28.67141106699999,340.402932208575 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Office</name>
+		<styleUrl>#dji_style_Polygon2D8CF0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#2D8CF0</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.1596361356429,-28.68166545751455,386.1216307674281 121.1651253748205,-28.68028841319879,384.3111567334533 121.1665097665249,-28.6844074985941,383.9007120519786 121.1606520878016,-28.68587479478999,381.6255934721763 121.1596361356429,-28.68166545751455,386.1216307674281 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>ROM</name>
+		<styleUrl>#dji_style_PolygonFFBB00</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFBB00</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.1429819574925,-28.67723486357873,380.1668279049568 121.1488999628891,-28.6886786787637,374.0630926010705 121.1563265023718,-28.6902788951856,376.7529490843174 121.1612160745352,-28.68835360645237,379.8237852828647 121.1593029318183,-28.68039019449058,384.0377947164274 121.1537705380183,-28.67842324269665,417.5079848055667 121.1542387694445,-28.67262629973098,406.5691568288333 121.1429819574925,-28.67723486357873,380.1668279049568 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>TSF5</name>
+		<styleUrl>#dji_style_Polygon19BE6B</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#19BE6B</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.166960293106,-28.67783106124513,385.9551799960195 121.1693165930742,-28.68463552121316,384.8774910043269 121.1878320482803,-28.68123112459967,390.5995935644233 121.1755454022429,-28.67447010818423,412.5714022945965 121.166960293106,-28.67783106124513,385.9551799960195 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Waste Dump South</name>
+		<styleUrl>#dji_style_PolygonB620E0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#B620E0</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.1672353260401,-28.67764308741805,388.3606003523067 121.1760149864823,-28.67476995229075,401.4661235484798 121.1814735295225,-28.66366132244239,419.5443782533864 121.1725709332491,-28.66727351404291,408.957258742935 121.1699651689687,-28.66787550922373,388.9322034003071 121.1672353260401,-28.67764308741805,388.3606003523067 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Waste Dump East</name>
+		<styleUrl>#dji_style_PolygonE23C39</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#E23C39</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.1666767823999,-28.65608039609565,387.0863600536159 121.1724248319616,-28.66729142227681,409.1598348827832 121.1906713958608,-28.65990448951782,388.5623318473305 121.1843943948768,-28.64851491439342,386.4392383100518 121.1666767823999,-28.65608039609565,387.0863600536159 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>North Pit</name>
+		<styleUrl>#dji_style_PolygonFFBB00</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFBB00</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.1566999526434,-28.67157567800429,390.8255129770272 121.1519206278131,-28.66164461571613,395.4699029178542 121.1674898983537,-28.65575442183905,387.3604781278362 121.1733283247969,-28.66693602159466,415.5190339640374 121.1566999526434,-28.67157567800429,390.8255129770272 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Waste Dump North</name>
+		<styleUrl>#dji_style_Polygon2D8CF0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#2D8CF0</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.1430057513717,-28.67727168520339,380.2029769009025 121.1572636772577,-28.6713331973749,383.9187865515121 121.1558026988381,-28.66277075347689,412.7498791031737 121.1525241903036,-28.65502449452005,386.0026462279668 121.1407023818862,-28.65980038984127,385.1154837092495 121.142279008671,-28.67584174320211,380.0245000947137 121.1430057513717,-28.67727168520339,380.2029769009025 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>South Pit</name>
+		<styleUrl>#dji_style_PolygonE23C39</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#E23C39</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.1537837589856,-28.67843854354188,416.7752233917633 121.1593758583067,-28.68035917076606,384.323206398331 121.1671385153298,-28.67746660438636,387.764897973927 121.1699672657749,-28.66722908887684,379.6253490222537 121.1672942365983,-28.6653798632273,229.6612387506914 121.1645201959911,-28.6651350070346,238.1733716013527 121.1591965710024,-28.66577487886251,402.3532860678336 121.1546404478119,-28.66744870027006,393.1714410614803 121.1537837589856,-28.67843854354188,416.7752233917633 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>TSF 4</name>
+		<styleUrl>#dji_style_Polygon2D8CF0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#2D8CF0</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.1758795033157,-28.67502102270348,395.4525844749321 121.1878148251662,-28.68123243124437,390.5574197357865 121.1949691394084,-28.66743678482589,386.9045054245344 121.1897830899049,-28.65839831743202,387.8909895257727 121.182387660279,-28.66179714888442,419.6513367523517 121.1758795033157,-28.67502102270348,395.4525844749321 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+</Document>
+</kml>
