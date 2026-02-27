@@ -541,6 +541,15 @@
                     <input type="file" id="tifFileInput" accept=".tif,.tiff" style="display:none">
                     <button class="tool-btn" id="tifChooseBtn" style="width:100%; justify-content:center;">Choose TIF file...</button>
                     <div class="upload-filename" id="tifFilename"></div>
+
+                    <div class="upload-label" style="margin-top:10px;">Optional Hillshade (GeoTIFF)</div>
+                    <input type="file" id="hillshadeFileInput" accept=".tif,.tiff" style="display:none">
+                    <button class="tool-btn" id="hillshadeChooseBtn" style="width:100%; justify-content:center;">Choose hillshade file...</button>
+                    <div class="upload-filename" id="hillshadeFilename"></div>
+
+                    <label class="upload-label" for="hillshadeOpacityInput" style="margin-top:10px;">Hillshade Opacity (multiply blend, 0-1)</label>
+                    <input type="number" class="name-input" id="hillshadeOpacityInput" min="0" max="1" step="0.05" value="0.6" style="margin-bottom:0">
+
                     <button class="modal-btn primary" id="tifUploadBtn" style="width:100%; margin-top:8px; display:none;">Upload &amp; Generate Tiles</button>
                     <div class="upload-progress" id="tifProgress" style="display:none;">
                         <div class="upload-progress-bar" id="tifProgressBar"></div>
@@ -1109,6 +1118,16 @@
                         document.getElementById('tifUploadBtn').style.display = 'block';
                     }
                 });
+                document.getElementById('hillshadeChooseBtn').addEventListener('click', () => document.getElementById('hillshadeFileInput').click());
+                document.getElementById('hillshadeFileInput').addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    const hillshadeName = document.getElementById('hillshadeFilename');
+                    if (file) {
+                        hillshadeName.textContent = file.name + ' (' + (file.size / 1024 / 1024).toFixed(1) + ' MB)';
+                    } else {
+                        hillshadeName.textContent = '';
+                    }
+                });
 
                 document.getElementById('kmlChooseBtn').addEventListener('click', () => document.getElementById('kmlFileInput').click());
                 document.getElementById('kmlFileInput').addEventListener('change', (e) => {
@@ -1140,14 +1159,22 @@
             }
 
             function uploadTif() {
-                const file = document.getElementById('tifFileInput').files[0];
-                if (!file) return;
+                const orthoFile = document.getElementById('tifFileInput').files[0];
+                const hillshadeFile = document.getElementById('hillshadeFileInput').files[0];
+                if (!orthoFile) return;
                 if (!SERVER_URL) { showUploadStatus('tifStatus', 'Server URL not configured in config.js', true); return; }
 
                 const site = document.getElementById('uploadSite').value;
+                let hillshadeOpacity = parseFloat(document.getElementById('hillshadeOpacityInput').value);
+                if (Number.isNaN(hillshadeOpacity)) hillshadeOpacity = 0.6;
+                hillshadeOpacity = Math.min(1, Math.max(0, hillshadeOpacity));
                 const formData = new FormData();
-                formData.append('file', file);
+                formData.append('orthoFile', orthoFile);
                 formData.append('site', site);
+                formData.append('hillshadeOpacity', hillshadeOpacity.toString());
+                if (hillshadeFile) {
+                    formData.append('hillshadeFile', hillshadeFile);
+                }
 
                 const xhr = new XMLHttpRequest();
                 const progressEl = document.getElementById('tifProgress');
@@ -1171,7 +1198,9 @@
                     if (xhr.status === 202) {
                         const data = JSON.parse(xhr.responseText);
                         barEl.style.width = '100%';
-                        statusEl.textContent = 'Upload complete. Generating tiles...';
+                        statusEl.textContent = hillshadeFile
+                            ? ('Upload complete. Blending hillshade (opacity ' + hillshadeOpacity.toFixed(2) + ') and generating tiles...')
+                            : 'Upload complete. Generating tiles...';
                         pollTifStatus(data.jobId);
                     } else {
                         try { showUploadStatus('tifStatus', JSON.parse(xhr.responseText).error, true); }
@@ -1199,9 +1228,13 @@
 
                 const poll = () => {
                     fetch(SERVER_URL + '/api/status/' + jobId)
-                        .then(r => r.json())
-                        .then(data => {
-                            statusEl.textContent = data.message || data.status;
+                        .then(r => r.json().then(data => ({ ok: r.ok, data })))
+                        .then(({ ok, data }) => {
+                            if (!ok) {
+                                throw new Error(data.error || ('Status check failed (HTTP ' + (data.status || 'unknown') + ')'));
+                            }
+                            const progressText = (typeof data.progressPct === 'number') ? (' [' + data.progressPct + '%]') : '';
+                            statusEl.textContent = (data.message || data.status) + progressText;
                             if (data.status === 'complete') {
                                 statusEl.className = 'upload-status success';
                                 btn.disabled = false;
