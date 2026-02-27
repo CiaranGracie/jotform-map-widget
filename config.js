@@ -9,7 +9,7 @@
 // The key (e.g. 'binduli-north') is used in the URL: ?site=binduli-north
 // ──────────────────────────────────────────────────────────────
 
-const SERVER_URL = '';  // e.g. 'https://your-ec2-domain.com'
+const SERVER_URL = 'http://localhost:5000';  // e.g. 'https://your-ec2-domain.com'
 
 const CF_BASE = 'https://d3mamsvnskv4vj.cloudfront.net';
 
