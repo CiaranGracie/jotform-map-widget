@@ -28,7 +28,7 @@ const SITES = {
         boundaryUrl: `${BOUNDARY_BASE}/prom-hill_boundaries.kml`,
         center: [135.58, -29.73],
         defaultZoom: 15
-    }
+    },
     'gudai-darri': {
         name: 'Gudai Darri',
         company: 'Rio Tinto',
