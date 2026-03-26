@@ -4,6 +4,21 @@
 	<name>Prom_Hill_Boundary.kml</name>
 	<open>1</open>
 	<atom:link rel="app" href="https://www.google.com/earth/about/versions/#earth-pro" title="Google Earth Pro 7.3.7.1094"></atom:link>
+	<Style id="dji_style_LineString0000FF">
+		<LineStyle>
+			<color>ffff0000</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80ff0000</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_PointFFFFFF">
+		<IconStyle>
+		</IconStyle>
+		<LabelStyle>
+		</LabelStyle>
+	</Style>
 	<Style id="dji_style_Polygon19BE6B">
 		<LineStyle>
 			<color>ff6bbe19</color>
@@ -49,6 +64,235 @@
 			<color>8000bbff</color>
 		</PolyStyle>
 	</Style>
+	<Placemark>
+		<styleUrl>#dji_style_LineString0000FF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#0000FF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				135.566160428,-29.737729893,248.9776083867951 135.585325785,-29.737000994,260.3208562093325 
+			</coordinates>
+		</LineString>
+	</Placemark>
+	<Placemark>
+		<styleUrl>#dji_style_LineString0000FF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#0000FF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				135.574550662,-29.729220359,244.7203198525905 135.576377137,-29.745912672,244.8453292246033 
+			</coordinates>
+		</LineString>
+	</Placemark>
+	<Placemark>
+		<styleUrl>#dji_style_LineString0000FF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#0000FF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				135.582340584,-29.731366036,260.6010227435015 135.568618691,-29.743330081,245.4342507125622 
+			</coordinates>
+		</LineString>
+	</Placemark>
+	<Placemark>
+		<styleUrl>#dji_style_LineString0000FF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#0000FF</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<LineString>
+			<tessellate>1</tessellate>
+			<coordinates>
+				135.568033728,-29.73219591,245.8748195547795 135.582993232,-29.742657669,244.0711264114138 
+			</coordinates>
+		</LineString>
+	</Placemark>
+	<Placemark>
+		<name>South Section 4</name>
+		<styleUrl>#dji_style_PointFFFFFF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFFFFF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>true</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Point>
+			<altitudeMode>absolute</altitudeMode>
+			<coordinates>135.577073785,-29.741646597,239.9742401881886</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>South Section 3</name>
+		<styleUrl>#dji_style_PointFFFFFF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFFFFF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>true</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Point>
+			<altitudeMode>absolute</altitudeMode>
+			<coordinates>135.572781873,-29.74180864,240.575967399605</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>South Section 2</name>
+		<styleUrl>#dji_style_PointFFFFFF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFFFFF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>true</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Point>
+			<altitudeMode>absolute</altitudeMode>
+			<coordinates>135.569973918,-29.739239593,240.3018493258731</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>South Section 1</name>
+		<styleUrl>#dji_style_PointFFFFFF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFFFFF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>true</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Point>
+			<altitudeMode>absolute</altitudeMode>
+			<coordinates>135.569811502,-29.735942127,240.3733912603181</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>North Section 4</name>
+		<styleUrl>#dji_style_PointFFFFFF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFFFFF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>true</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Point>
+			<altitudeMode>absolute</altitudeMode>
+			<coordinates>135.579007827,-29.73864471,239.807813045428</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>North Section 3</name>
+		<styleUrl>#dji_style_PointFFFFFF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFFFFF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>true</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Point>
+			<altitudeMode>absolute</altitudeMode>
+			<coordinates>135.579175374,-29.735632611,239.9682153555887</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>North Section 2</name>
+		<styleUrl>#dji_style_PointFFFFFF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFFFFF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>true</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Point>
+			<altitudeMode>absolute</altitudeMode>
+			<coordinates>135.576266691,-29.733404707,240.3794160930704</coordinates>
+		</Point>
+	</Placemark>
+	<Placemark>
+		<name>North Section 1</name>
+		<styleUrl>#dji_style_PointFFFFFF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFFFFF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>true</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Point>
+			<altitudeMode>absolute</altitudeMode>
+			<coordinates>135.572570214,-29.733474523,241.1890118443323</coordinates>
+		</Point>
+	</Placemark>
 	<Placemark>
 		<name>NW</name>
 		<styleUrl>#dji_style_Polygon2D8CF0</styleUrl>
