@@ -23,7 +23,7 @@ const SITES = {
     },
     'prom_hill': {
         name: 'Prominent Hill',
-        company: 'Norton',
+        company: 'BHP',
         tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/prom_hill/{z}/{x}/{y}.png',
         boundaryUrl: `${BOUNDARY_BASE}/prom-hill_boundaries.kml`,
         center: [121.37, -30.78],
