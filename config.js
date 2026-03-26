@@ -21,6 +21,14 @@ const SITES = {
         center: [121.37, -30.78],
         defaultZoom: 15
     },
+    'prom_hill': {
+        name: 'Prominent Hill',
+        company: 'Norton',
+        tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/prom_hill/{z}/{x}/{y}.png',
+        boundaryUrl: `${BOUNDARY_BASE}/prom-hill_boundaries.kml`,
+        center: [121.37, -30.78],
+        defaultZoom: 15
+    }
     'gudai-darri': {
         name: 'Gudai Darri',
         company: 'Rio Tinto',
