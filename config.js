@@ -26,7 +26,7 @@ const SITES = {
         company: 'Norton',
         tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/binduli-south/{z}/{x}/{y}.png',
         boundaryUrl: `${BOUNDARY_BASE}/binduli-south_boundaries.kml`,
-        center: [121.37, -30.78],
+        center: [121.45, -30.82],
         defaultZoom: 15
     },
     'prom_hill': {
