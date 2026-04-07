@@ -21,6 +21,14 @@ const SITES = {
         center: [121.37, -30.78],
         defaultZoom: 15
     },
+    'binduli-south': {
+        name: 'Binduli South',
+        company: 'Norton',
+        tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/binduli-south/{z}/{x}/{y}.png',
+        boundaryUrl: `${BOUNDARY_BASE}/binduli-south_boundaries.kml`,
+        center: [121.37, -30.78],
+        defaultZoom: 15
+    },
     'prom_hill': {
         name: 'Prominent Hill',
         company: 'BHP',
