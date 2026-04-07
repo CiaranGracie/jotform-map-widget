@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Binduli South Areas.kml</name>
+	<open>1</open>
+	<atom:link rel="app" href="https://www.google.com/earth/about/versions/#earth-pro" title="Google Earth Pro 7.3.7.1094"></atom:link>
+	<Style id="dji_style_Polygon19BE6B">
+		<LineStyle>
+			<color>ff6bbe19</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>806bbe19</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_Polygon2D8CF0">
+		<LineStyle>
+			<color>fff08c2d</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80f08c2d</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_PolygonAA00FF">
+		<LineStyle>
+			<color>ffff00aa</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80ff00aa</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_PolygonB620E0">
+		<LineStyle>
+			<color>ffe020b6</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80e020b6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_PolygonFFBB00">
+		<LineStyle>
+			<color>ff00bbff</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000bbff</color>
+		</PolyStyle>
+	</Style>
+	<Placemark>
+		<name>WD</name>
+		<styleUrl>#dji_style_PolygonAA00FF</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#AA00FF</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.4076065027758,-30.82050984143327,333.5549656236032 121.409674369673,-30.8224263619887,329.6373122664785 121.4132495331483,-30.82788056917151,318.4665164168073 121.4206982605487,-30.82205949638708,319.0140201333316 121.4131086940412,-30.81689362839126,335.7163684428115 121.4077510346078,-30.81066153630145,337.6285085731285 121.4031209820586,-30.81706050490822,338.301021661738 121.401074218765,-30.82182217574893,330.1373733774984 121.4036968299598,-30.82132037095121,336.8061070992447 121.4065296410631,-30.82010750372226,334.33516964308 121.4076065027758,-30.82050984143327,333.5549656236032 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>ROM</name>
+		<styleUrl>#dji_style_PolygonFFBB00</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFBB00</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.3941155103737,-30.82456308496715,342.0573036523213 121.4009332430495,-30.83248482795802,345.2145053491981 121.4079428549942,-30.82718225010419,322.9798721527297 121.4068298637966,-30.82591037125792,326.106004255585 121.403696235069,-30.82132664469974,336.8422560947126 121.3976404414407,-30.8224676942812,335.0567168142043 121.3941155103737,-30.82456308496715,342.0573036523213 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Navajo South</name>
+		<styleUrl>#dji_style_Polygon2D8CF0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#2D8CF0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.4009295152387,-30.83248638081826,344.8869198390695 121.3941084394851,-30.82456676705274,342.0886363398706 121.397647796516,-30.82246329356904,335.0695039146275 121.3993169705053,-30.82214723091791,332.6384349981459 121.3922762734264,-30.81347286421918,344.0291254255663 121.3803007475186,-30.822159378952,372.9021390823015 121.3937822924618,-30.8379092581431,329.9588965692412 121.4009295152387,-30.83248638081826,344.8869198390695 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Pitman</name>
+		<styleUrl>#dji_style_PolygonFFBB00</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFBB00</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.4010893069575,-30.82181361037711,330.3519991841229 121.4030988943573,-30.81706674478406,338.3190961579833 121.4077550456643,-30.81065894951564,337.6337773492229 121.4030122713718,-30.805272436646,345.0352724846032 121.3922798072979,-30.81347151934548,344.2076258605376 121.3993280925874,-30.82214937013027,332.6203605004912 121.4010893069575,-30.82181361037711,330.3519991841229 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Centurion- Kaska</name>
+		<styleUrl>#dji_style_Polygon19BE6B</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#19BE6B</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.4014608381686,-30.84664849205072,320.0924651844646 121.4162637403438,-30.83638729598783,318.7346332859372 121.4079510999605,-30.82718393358368,322.967822487325 121.4051206223776,-30.82930534044636,328.9821176187539 121.3937728791176,-30.83792666422626,330.0537817783928 121.3999451797431,-30.84560317534022,322.3133838976827 121.4014608381686,-30.84664849205072,320.0924651844646 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Ben Hur</name>
+		<styleUrl>#dji_style_PolygonB620E0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#B620E0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.4201654490883,-30.84710878877611,315.6435419105293 121.4135898469498,-30.83824928457434,315.9594299625787 121.4014465156607,-30.84666848983644,320.1338829556546 121.4103225461163,-30.85334553888662,318.8823318739159 121.4201654490883,-30.84710878877611,315.6435419105293 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>South Apache</name>
+		<styleUrl>#dji_style_Polygon2D8CF0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#2D8CF0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.4289481712556,-30.8278542361181,307.7175479060981 121.4207000396473,-30.82207013327872,319.0087513574497 121.4105189190904,-30.8300192329519,319.949381314482 121.4162705857359,-30.83638806844581,318.7466829509828 121.4289481712556,-30.8278542361181,307.7175479060981 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>SE CNR</name>
+		<styleUrl>#dji_style_PolygonFFBB00</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFBB00</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.4289493879742,-30.82785380981286,307.7194944197632 121.4162741351317,-30.83638953302007,318.7527077835553 121.4135940491195,-30.83824666340094,315.9594299640065 121.4201664813217,-30.84711130633663,315.6430012743938 121.4392064963637,-30.83506330589904,308.6290228801607 121.4289493879742,-30.82785380981286,307.7194944197632 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Apache Pit</name>
+		<styleUrl>#dji_style_Polygon2D8CF0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#2D8CF0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.4068151657317,-30.82589928123693,326.1654965266276 121.4105447461661,-30.82999542626187,319.7407803429003 121.4132447298794,-30.8278788051095,318.6216499530318 121.4096746394424,-30.82242745541288,329.6312874323112 121.4076010236939,-30.82050793143355,333.5730401207528 121.4065233375859,-30.82011321290249,334.3351696433937 121.4036691558732,-30.82129447579104,338.5985066349254 121.4068151657317,-30.82589928123693,326.1654965266276 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+</Document>
+</kml>
