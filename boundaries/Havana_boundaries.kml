@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	<name>Havana_boundaries.kml</name>
+	<open>1</open>
+	<atom:link rel="app" href="https://www.google.com/earth/about/versions/#earth-pro" title="Google Earth Pro 7.3.7.1155"></atom:link>
+	<Style id="dji_style_Polygon19BE6B">
+		<LineStyle>
+			<color>ff6bbe19</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>806bbe19</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_Polygon2D8CF0">
+		<LineStyle>
+			<color>fff08c2d</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80f08c2d</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_PolygonB620E0">
+		<LineStyle>
+			<color>ffe020b6</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80e020b6</color>
+		</PolyStyle>
+	</Style>
+	<Style id="dji_style_PolygonFFBB00">
+		<LineStyle>
+			<color>ff00bbff</color>
+			<width>2</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>8000bbff</color>
+		</PolyStyle>
+	</Style>
+	<Placemark>
+		<name>Federal ROM</name>
+		<styleUrl>#dji_style_PolygonFFBB00</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFBB00</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.4169867546256,-30.41152771660864,338.0058176149535 121.436166978553,-30.4044419062654,321.6659341216383 121.4362807456878,-30.4164703902396,319.0105982690027 121.4163538838562,-30.41663524001372,337.5924186376556 121.4163948375026,-30.41511035832355,337.5556771205588 121.4169867546256,-30.41152771660864,338.0058176149535 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>SE CNR</name>
+		<styleUrl>#dji_style_Polygon2D8CF0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#2D8CF0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.4163538838562,-30.41663524001372,337.5911546518228 121.4362807456878,-30.4164703902396,319.0113671797756 121.4364292369961,-30.43143405785999,319.61559442829 121.4159721367995,-30.43148745408027,340.573595249268 121.4163538838562,-30.41663524001372,337.5911546518228 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Jakarta</name>
+		<styleUrl>#dji_style_PolygonB620E0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#B620E0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.4026440747421,-30.41508104906576,343.9816828227233 121.4163948375026,-30.41511035832355,337.5605837029566 121.4163538838562,-30.41663524001372,337.8405278262239 121.4163538838562,-30.41663524001372,337.8405330939121 121.4159721367995,-30.43148745408027,340.5736923592707 121.3789415611298,-30.43159216004073,362.6093535954472 121.4026440747421,-30.41508104906576,343.9816828227233 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Havana WRD Sth</name>
+		<styleUrl>#dji_style_Polygon19BE6B</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#19BE6B</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.3945174708873,-30.40287219405483,354.3127587556825 121.3944179063864,-30.40835612465843,345.7379333632136 121.4026440747421,-30.41508104906576,343.9816828217076 121.3789415611298,-30.43159216004073,362.6087814488831 121.3797260797347,-30.40274883908589,351.9999520000323 121.3945174708873,-30.40287219405483,354.3127587556825 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Havana Pit</name>
+		<styleUrl>#dji_style_PolygonB620E0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#B620E0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.4029708911965,-30.40291782065864,340.563358146599 121.4026440747421,-30.41508104906576,343.969633156742 121.3944179063864,-30.40835612465843,345.7439581944321 121.3945174708873,-30.40287219405483,354.5748507897369 121.4029708911965,-30.40291782065864,340.563358146599 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Havana WRD Nth</name>
+		<styleUrl>#dji_style_PolygonFFBB00</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#FFBB00</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.4072658046485,-30.40293050722804,340.9268500115559 121.4029708911965,-30.40291782065864,340.5219167493363 121.3945174708873,-30.40287219405483,354.7119098278469 121.3797260797347,-30.40274883908589,351.9999520000323 121.3799580105032,-30.39424308604169,350.0000025779796 121.4073090973433,-30.39437938885426,341.7679311710647 121.4072658046485,-30.40293050722804,340.9268500115559 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Federal WRD East</name>
+		<styleUrl>#dji_style_Polygon19BE6B</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#19BE6B</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.4169867546256,-30.41152771660864,338.0068307781621 121.436166978553,-30.4044419062654,321.6684160961845 121.4360937343259,-30.3945271909665,328.0035936715392 121.4073090973433,-30.39437938885426,341.7671110941232 121.4072658046485,-30.40293050722804,340.9267513623392 121.4169867546256,-30.41152771660864,338.0068307781621 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+	<Placemark>
+		<name>Federal Pit</name>
+		<styleUrl>#dji_style_Polygon2D8CF0</styleUrl>
+		<ExtendedData>
+			<Data name="color" type="string">
+				<value>#2D8CF0</value>
+			</Data>
+			<Data name="clampToGround" type="boolean">
+				<value>false</value>
+			</Data>
+			<Data name="is3d" type="boolean">
+				<value>false</value>
+			</Data>
+		</ExtendedData>
+		<Polygon>
+			<outerBoundaryIs>
+				<LinearRing>
+					<coordinates>
+						121.4072658046485,-30.40293050722804,340.9275807759488 121.4169867546256,-30.41152771660864,338.0028317592494 121.4163948375026,-30.41511035832355,337.5598584516449 121.4026440747421,-30.41508104906576,343.9696331565389 121.4029708911965,-30.40291782065864,340.5399912463972 121.4072658046485,-30.40293050722804,340.9275807759488 
+					</coordinates>
+				</LinearRing>
+			</outerBoundaryIs>
+		</Polygon>
+	</Placemark>
+</Document>
+</kml>
