@@ -29,6 +29,14 @@ const SITES = {
         center: [121.40698, -30.82804],
         defaultZoom: 15
     },
+    'havana': {
+        name: 'Havana',
+        company: 'Norton',
+        tileUrl: 'https://d3mamsvnskv4vj.cloudfront.net/havana/{z}/{x}/{y}.png',
+        boundaryUrl: `${BOUNDARY_BASE}/Havana_boundaries.kml`,
+        center: [121.4083, -30.4121],
+        defaultZoom: 15
+    },
     'prom_hill': {
         name: 'Prominent Hill',
         company: 'BHP',
